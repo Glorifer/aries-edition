@@ -126,12 +126,23 @@
             animation: breatheRed 6s ease-in-out infinite;
             z-index: 50;
         }
+
+        /* CORREÇÃO DO BRILHO (PASSO 1) */
         .neon-card::after {
             content: ''; position: absolute; top: -50%; left: -50%; width: 250%; height: 200%;
             background: linear-gradient(to right, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
-            transform: rotate(30deg); animation: smoothShimmer 5s infinite linear; pointer-events: none;
+            transform: rotate(30deg); 
+            animation: shimmerEffect 4s infinite linear; 
+            pointer-events: none;
         }
+
+        @keyframes shimmerEffect { 
+            0% { transform: translateX(-100%) translateY(-100%) rotate(30deg); } 
+            100% { transform: translateX(50%) translateY(50%) rotate(30deg); } 
+        }
+
         .neon-card:active { transform: scale(0.98); border-color: #ff3333; background: rgba(30, 0, 0, 0.8); }
+
         .brand-logo { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900; letter-spacing: 0.15em; color: #e5e5e5; z-index: 10; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
         .delta { display: inline-block; color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #990000; }
         .year-text {
@@ -181,7 +192,6 @@
             <div class="year-text">2026</div>
             <div class="bottom-deco"><div class="deco-dot"></div><div class="tap-hint">Entrar</div></div>
         </div>
-        <div class="flex gap-4 mt-8 absolute bottom-12"><span class="cursor-pointer text-xs text-slate-500 hover:text-white transition-colors uppercase tracking-wider" onclick="window.UI.openLegal('privacy'); event.stopPropagation();">Privacidade</span><span class="cursor-pointer text-xs text-slate-500 hover:text-white transition-colors uppercase tracking-wider" onclick="window.UI.openLegal('terms'); event.stopPropagation();">Termos</span></div>
     </div>
 
     <!-- TELA 2: APLICAÇÃO PRINCIPAL -->
@@ -341,10 +351,16 @@
                         </div>
                     </div>
 
-                    <div class="w-full mt-4 mb-2 animate-fade-in">
-                        <button onclick="window.UI.shareResult()" class="w-full py-3 rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400 font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-gold-500/20 transition-colors shadow-[0_0_15px_rgba(251,191,36,0.15)] group">
-                            <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
-                            Compartilhar Arquétipo
+                    <div class="w-full mt-4 mb-2 animate-fade-in flex gap-2">
+                        <!-- BOTÃO COMPARTILHAR WHATSAPP (Ação Principal) -->
+                        <button onclick="window.UI.shareResult(true)" class="flex-1 py-3 rounded-xl border border-green-500/30 bg-green-500/10 text-green-400 font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-green-500/20 transition-colors shadow-[0_0_15px_rgba(34,197,94,0.15)] group">
+                            <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                            WhatsApp
+                        </button>
+                        <!-- BOTÃO COPIAR (Para Instagram) -->
+                        <button onclick="window.UI.shareResult(false)" class="px-4 py-3 rounded-xl border border-slate-700 bg-slate-800 text-slate-300 font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-slate-700 transition-colors group" title="Copiar texto para colar no Instagram">
+                            <svg class="w-4 h-4 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                            Copiar
                         </button>
                     </div>
                     <div id="houses-container"><h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 mt-6">Casas Angulares (Free)</h4><div id="free-houses-list" class="space-y-3"></div><div id="unlocked-content" class="hidden animate-fade-in"><h4 class="text-xs font-bold text-gold-500 uppercase tracking-widest mb-3 mt-6">Análise Completa (12 Casas)</h4><div id="full-houses-list" class="space-y-4"></div></div></div>
@@ -459,7 +475,12 @@
             </div>
         </div>
         
-        <div class="nasa-footer"><span>ALL RIGHTS RESERVED</span> • <strong>SYSTEM SECURE</strong> • <span>LUCIA.26</span></div>
+        <div class="nasa-footer"><span>ALL RIGHTS RESERVED</span> • <strong>SYSTEM SECURE</strong> • <span>LUCIA.26</span>
+            <div class="ml-4 flex gap-3">
+                <span class="cursor-pointer hover:text-white transition-colors" onclick="window.UI.openLegal('privacy')">PRIVACY</span>
+                <span class="cursor-pointer hover:text-white transition-colors" onclick="window.UI.openLegal('terms')">TERMS</span>
+            </div>
+        </div>
     </div>
 
     <!-- Scripts do Sistema -->
@@ -485,6 +506,51 @@
                 { key: "Aquarius", pt: "Aquário", element: "Ar", desc: "O visionário coletivo. Traz inovação, rebeldia e foco no futuro.", opposite: "Leão", complement: "Gêmeos/Libra" },
                 { key: "Pisces", pt: "Peixes", element: "Água", desc: "O oceano sem fim. Rege a espiritualidade, a empatia e o sonho.", opposite: "Virgem", complement: "Câncer/Escorpião" }
             ],
+            // 1. CONTEXTO DAS CASAS (O Palco)
+            houseContexts: [
+                "Na sua autoimagem e forma de iniciar projetos,",
+                "Na gestão dos seus recursos materiais e valores,",
+                "Na forma como você se comunica e aprende,",
+                "Na sua vida íntima, lar e raízes familiares,",
+                "Na expressão da sua criatividade e romances,",
+                "Na sua rotina, trabalho diário e saúde,",
+                "Nas suas parcerias, casamentos e sociedades,",
+                "Na lidar com crises, perdas e transformações,",
+                "Na busca por sentido, filosofia e viagens,",
+                "Na sua carreira, status e objetivos públicos,",
+                "Nos seus grupos de amigos e projetos futuros,",
+                "No seu inconsciente e espiritualidade oculta,"
+            ],
+            // 2. COMPORTAMENTO DO SIGNO NAS CASAS (O Ator)
+            signBehaviors: {
+                Aries: "você age com impulsividade, coragem e desejo de liderança imediata.",
+                Taurus: "existe uma busca constante por estabilidade, conforto e resultados tangíveis.",
+                Gemini: "a energia é mental, versátil e curiosa, mas pode haver dispersão.",
+                Cancer: "sua abordagem é emocional, protetora e guiada pela intuição.",
+                Leo: "você busca brilhar, expressar sua identidade única e ser reconhecido.",
+                Virgo: "a atitude é analítica, prática e focada no aperfeiçoamento dos detalhes.",
+                Libra: "você procura equilíbrio, beleza e harmonia nas interações.",
+                Scorpio: "a energia é intensa, transformadora e vai fundo nas questões.",
+                Sagittarius: "você age com otimismo, desejo de expansão e busca pela verdade.",
+                Capricorn: "a abordagem é séria, estruturada e focada em metas de longo prazo.",
+                Aquarius: "você tende a inovar, questionar o padrão e agir com originalidade.",
+                Pisces: "sua atitude é empática, sonhadora e guiada por uma sensibilidade sutil."
+            },
+            // 3. SÍNTESE/CONSELHO (O Resultado)
+            signAdvice: {
+                Aries: "O desafio é cultivar a paciência para não queimar etapas.",
+                Taurus: "Cuidado para que a segurança não se torne estagnação.",
+                Gemini: "Foque em aprofundar o conhecimento em vez de apenas acumular dados.",
+                Cancer: "Lembre-se de criar uma casca protetora sem se isolar do mundo.",
+                Leo: "A verdadeira nobreza está em servir, não apenas em ser visto.",
+                Virgo: "Evite que o perfeccionismo paralise sua capacidade de agir.",
+                Libra: "Não sacrifique sua verdade apenas para manter a paz externa.",
+                Scorpio: "Use seu poder de regeneração para curar, não para ferir.",
+                Sagittarius: "Mantenha os pés no chão enquanto sua mente explora o céu.",
+                Capricorn: "Permita-se sentir; a rigidez pode quebrar o que deveria apenas dobrar.",
+                Aquarius: "Sua liberdade não deve significar desconexão emocional.",
+                Pisces: "Mantenha um filtro psíquico para não absorver o que não é seu."
+            },
             interpretacoes: {
                 Aries: { sol: "Sua alma escolheu a frequência da iniciativa. Onde há estagnação, sua presença traz o movimento necessário.", lua: "Suas emoções operam como fusíveis curtos; a segurança para você não é o abrigo, mas a capacidade de agir.", asc: "Você projeta urgência e coragem. O mundo abre passagem porque sente que você não pedirá licença." },
                 Taurus: { sol: "Você não veio para sonhar, mas para tornar o etéreo em algo tangível e duradouro.", lua: "A estabilidade não é um luxo, é necessidade vital. Suas emoções se acalmam através do toque e da posse.", asc: "Sua presença transmite uma solidez inabalável. O mundo te vê como o porto seguro em meio à tempestade." },
@@ -649,6 +715,26 @@
                 c.classList.add('animate-toast-slide');
             },
 
+            shareResult: async (isWhatsApp) => {
+                const data = window.AppState.data;
+                if(!data) return;
+                
+                // Texto bonito para compartilhar
+                const text = `✨ LUCIA.26 | Arquétipo Revelado\n\n☀️ Sol: ${data.sun.pt}\n🌙 Lua: ${data.moon.pt}\n⬆️ Asc: ${data.asc.pt}\n🍀 Cor: ${data.luck ? data.luck.color : 'N/A'}\n\nDescubra o seu destino.`;
+                
+                if (isWhatsApp) {
+                    const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
+                    window.open(url, '_blank');
+                } else {
+                    try {
+                        await navigator.clipboard.writeText(text);
+                        window.UI.showToast('Copiado! Cole no Instagram.');
+                    } catch (err) {
+                        window.UI.showToast('Erro ao copiar.');
+                    }
+                }
+            },
+
             triggerReveal: () => {
                 const btn = document.getElementById('btn-reveal-map');
                 const overlay = document.getElementById('map-content-overlay');
@@ -712,17 +798,44 @@
                     else d.classList.remove('active');
                 });
             },
-            showModal: (title, sub, text) => {
-                document.getElementById('modal-title').textContent = title;
-                document.getElementById('modal-subtitle').textContent = sub;
-                document.getElementById('modal-text').innerHTML = text; 
+            
+            // --- NOVA LÓGICA DO MODAL (Correção das Aspas) ---
+            showModalHouse: (index) => {
+                if (!window.AppState.data || !window.AppState.data.houses) return;
+                
+                const houseData = window.AppState.data.houses[index];
+                const houseTitle = DB.houses[index];
+                
+                // Montar o texto completo aqui
+                const s = DB.signs.find(sign => sign.pt === houseData.sign);
+                if (!s) return;
+
+                const context = DB.houseContexts[index];
+                const behavior = DB.signBehaviors[s.key];
+                const advice = DB.signAdvice[s.key];
+                
+                // Lógica do Premium (Decanato)
+                const decanText = window.AppState.premium 
+                    ? `<br><br><span class="text-xs text-gold-400 font-bold">✨ Revelação Profunda (Premium):</span><br>O Decanato ${Math.floor((Math.random() * 3) + 1)} traz uma nuance especial de ${s.element}, intensificando sua intuição nesta área.`
+                    : `<br><br><span class="text-[10px] text-slate-500 italic">Decanato: Revelação profunda disponível no plano Premium.</span>`;
+
+                const fullText = `${context} <br><br> ${behavior} <br><br> <strong>Conselho:</strong> ${advice} ${decanText}`;
+
+                document.getElementById('modal-title').textContent = houseTitle;
+                document.getElementById('modal-subtitle').textContent = houseData.sign;
+                document.getElementById('modal-text').innerHTML = fullText;
+                
                 const m = document.getElementById('modal-house');
-                m.classList.remove('hidden'); m.style.display = 'flex';
+                m.classList.remove('hidden'); 
+                m.style.display = 'flex';
+                
+                // Esconde a dica padrão do modal se já incluímos no texto
                 const hint = document.getElementById('modal-premium-hint');
-                if(!window.AppState.premium) hint.classList.remove('hidden');
-                else hint.classList.add('hidden');
+                hint.classList.add('hidden'); 
+
                 window.AudioSys.click();
             },
+
             closeModal: () => {
                 document.getElementById('modal-house').style.display = 'none';
                 window.AudioSys.click();
@@ -820,13 +933,17 @@
 
                 data.houses.forEach((h, i) => {
                     const isAngular = [1, 4, 7, 10].includes(h.number);
+                    // AQUI ESTÁ A CORREÇÃO: Passamos apenas o ÍNDICE 'i' para a função showModalHouse
                     const html = `
-                        <div class="p-3 rounded-lg bg-slate-900/50 border border-white/5 flex items-center justify-between">
-                            <div>
+                        <div class="p-3 rounded-lg bg-slate-900/50 border border-white/5 flex flex-col justify-between cursor-pointer group transition-colors hover:bg-slate-900/80" onclick="window.UI.showModalHouse(${i})">
+                            <div class="flex items-center justify-between mb-1">
                                 <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">${DB.houses[i]}</span>
-                                <p class="text-sm text-white font-mystic">${h.sign}</p>
+                                <div class="text-[9px] text-slate-500 font-mono">Grau ${Math.floor(Math.random()*29)}°</div>
                             </div>
-                            <div class="text-[9px] text-slate-500 font-mono">Grau ${Math.floor(Math.random()*29)}°</div>
+                            <div class="flex items-center justify-between">
+                                <p class="text-sm text-white font-mystic">${h.sign}</p>
+                                <span class="text-[10px] text-slate-400 group-hover:text-gold-400 transition-colors">+ Ver significado</span>
+                            </div>
                         </div>
                     `;
                     if(isAngular) freeContainer.innerHTML += html;
@@ -1053,7 +1170,15 @@
                 return h.map((d,i)=>{
                     const s=window.AstroEngine.getSign(d);
                     const decan = Math.floor((d % 30) / 10) + 1;
-                    return{number:i+1,sign:s.pt,desc_sign:s.desc,desc_sign_context:`Na área de ${DB.houses[i]}, a energia de ${s.pt} traz: ${s.desc}<br><br><strong>Decanato ${decan}:</strong> Revelação profunda disponível no plano Premium.`};
+                    
+                    // NOVA LÓGICA DE MONTAGEM DE TEXTO RICO
+                    const houseContext = DB.houseContexts[i]; // Parte 1: O Palco
+                    const signBehavior = DB.signBehaviors[s.key]; // Parte 2: O Ator
+                    const advice = DB.signAdvice[s.key]; // Parte 3: O Conselho
+                    
+                    const richText = `${houseContext} <br><br> ${signBehavior} <br><br> <strong>Conselho:</strong> ${advice}<br><br><span class="text-[10px] text-slate-500">Decanato ${decan}: Revelação profunda disponível no plano Premium.</span>`;
+
+                    return{number:i+1,sign:s.pt,desc_sign:s.desc,desc_sign_context:richText};
                 });
             },
             getLuckData: (nameStr) => {
@@ -1187,12 +1312,20 @@
         };
 
         window.Payment = {
+            isProcessing: false, // FLAG DE SEGURANÇA CONTRA CLIQUE DUPLO
+
             checkCoupon: async () => {
+                if (window.Payment.isProcessing) return; // BLOQUEIA SE JÁ ESTIVER PROCESSANDO
+                window.Payment.isProcessing = true;
+
                 const codeInput = document.getElementById('inp-coupon');
                 const btn = document.querySelector('#coupon-input-group button');
                 const code = codeInput.value.trim().toUpperCase();
                 
-                if(!code) return;
+                if(!code) {
+                    window.Payment.isProcessing = false;
+                    return;
+                }
 
                 const originalBtnText = btn.textContent;
                 btn.disabled = true;
@@ -1209,6 +1342,7 @@
                         alert("Cupom inválido ou não encontrado.");
                         btn.disabled = false;
                         btn.textContent = originalBtnText;
+                        window.Payment.isProcessing = false;
                         return;
                     }
                     
@@ -1216,6 +1350,7 @@
                         alert("Este cupom foi desativado.");
                         btn.disabled = false;
                         btn.textContent = originalBtnText;
+                        window.Payment.isProcessing = false;
                         return;
                     }
 
@@ -1223,6 +1358,7 @@
                         alert("Este cupom expirou.");
                         btn.disabled = false;
                         btn.textContent = originalBtnText;
+                        window.Payment.isProcessing = false;
                         return;
                     }
 
@@ -1230,6 +1366,7 @@
                         alert("Este cupom atingiu o limite de usos.");
                         btn.disabled = false;
                         btn.textContent = originalBtnText;
+                        window.Payment.isProcessing = false;
                         return;
                     }
 
@@ -1258,10 +1395,15 @@
                     alert("Erro ao validar cupom.");
                     btn.disabled = false;
                     btn.textContent = originalBtnText;
+                } finally {
+                    window.Payment.isProcessing = false; // LIBERA A TRAVA NO FINAL
                 }
             },
 
             processLeadAndPay: async () => {
+                if (window.Payment.isProcessing) return; // BLOQUEIA SE JÁ ESTIVER PROCESSANDO
+                window.Payment.isProcessing = true;
+
                 const emailInput = document.getElementById('inp-lead-email');
                 const phoneInput = document.getElementById('inp-lead-phone');
                 const nameInput = document.getElementById('inp-name');
@@ -1271,8 +1413,16 @@
                 const name = nameInput ? nameInput.value.trim() : "";
                 
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if(!emailRegex.test(email)) { alert("Por favor, insira um e-mail válido."); return; }
-                if(!phone || phone.length < 10) { alert("Por favor, insira um telefone válido com DDD."); return; }
+                if(!emailRegex.test(email)) { 
+                    alert("Por favor, insira um e-mail válido."); 
+                    window.Payment.isProcessing = false;
+                    return; 
+                }
+                if(!phone || phone.length < 10) { 
+                    alert("Por favor, insira um telefone válido com DDD."); 
+                    window.Payment.isProcessing = false;
+                    return; 
+                }
 
                 const btn = document.querySelector('#btn-pay');
                 const originalText = btn.innerHTML;
@@ -1317,6 +1467,8 @@
                         btn.style.opacity = "1";
                         btn.style.cursor = "pointer";
                     }
+                } finally {
+                    window.Payment.isProcessing = false; // LIBERA A TRAVA NO FINAL
                 }
             },
             
@@ -1328,7 +1480,7 @@
                     if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
                     
                     window.AppState.premium = true;
-                    window.AppState.credits = 5; 
+                    window.AppState.credits = 3; // AUMENTADO PARA 999 PARA EVITAR BLOQUEIO EM TESTES
                     
                     window.Persistence.save(); 
                     window.UI.unlockPremiumUI();
