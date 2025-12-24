@@ -20,7 +20,9 @@ Gestão de Leads & Voucher: Integração com Supabase para captura de leads e va
 
 🛠 Tecnologias Utilizadas
 
-Frontend: HTML5, CSS3 Avançado (Animações), JavaScript (ES6+).
+Frontend:
+
+HTML5, CSS3 Avançado (Animações), JavaScript (ES6+).
 
 Estilização: Tailwind CSS (via CDN) com configurações personalizadas de tema.
 
