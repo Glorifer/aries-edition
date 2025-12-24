@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUCIA.26 | Aries Edition</title>
+    
+    <!-- Fontes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Courier+Prime:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Configuração do Tailwind -->
+    <script>
+        function setupTailwind() {
+            if (typeof tailwind !== 'undefined') {
+                tailwind.config = {
+                    theme: {
+                        extend: {
+                            colors: {
+                                teal: { 950: '#000205', 900: '#0f172a', 800: '#1e293b', 500: '#14b8a6', 400: '#2dd4bf', 300: '#5eead4' },
+                                slate: { 950: '#000205', 900: '#0f172a' },
+                                gold: { 300: '#fde047', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309' },
+                                red: { 500: '#ef4444', 600: '#dc2626', 700: '#b91c1c' },
+                                green: { 400: '#4ade80', 500: '#22c55e', 600: '#16a34a', 900: '#064e3b' }
+                            },
+                            fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Courier Prime', 'monospace'] },
+                            animation: {
+                                'spin-slow': 'spin 12s linear infinite', 
+                                'spin-reverse-slow': 'spinReverse 15s linear infinite',
+                                'entrance-spin': 'entranceSpin 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards',
+                                'pulse-glow': 'pulseGlow 6s infinite', 
+                                'shimmer': 'shimmer 2s linear infinite',
+                                'lock-pulse': 'lockPulse 2s infinite',
+                                'twinkle': 'twinkle 4s ease-in-out infinite',
+                                'slide-up': 'slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                                'star-flash': 'starFlash 5s ease-in-out infinite',
+                                'fade-out': 'fadeOut 0.3s ease-out forwards',
+                                'fade-in': 'fadeIn 0.5s ease-out forwards',
+                                'pop-in': 'popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards',
+                                'float': 'float 6s ease-in-out infinite',
+                                'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
+                                'toast-slide': 'toastSlide 4s ease-in-out forwards',
+                                'breatheRed': 'breatheRed 6s ease-in-out infinite',
+                                'smoothShimmer': 'smoothShimmer 5s infinite linear'
+                            },
+                            keyframes: {
+                                spinReverse: { from: { transform: 'rotate(360deg)' }, to: { transform: 'rotate(0deg)' } },
+                                entranceSpin: { '0%': { transform: 'rotate(-90deg) scale(0.8)', opacity: '0' }, '100%': { transform: 'rotate(0deg) scale(1)', opacity: '1' } },
+                                pulseGlow: { '0%, 100%': { opacity: '0.4', transform: 'scale(1)' }, '50%': { opacity: '0.7', transform: 'scale(1.05)' } },
+                                shimmer: { '0%': { backgroundPosition: '-1000px 0' }, '100%': { backgroundPosition: '1000px 0' } },
+                                lockPulse: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.1)' } },
+                                twinkle: { '0%, 100%': { opacity: '0.2' }, '50%': { opacity: '0.6' } },
+                                slideUp: { '0%': { transform: 'translateY(20px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                                fadeOut: { '0%': { opacity: '1', transform: 'scale(1)' }, '100%': { opacity: '0', transform: 'scale(0.95)', pointerEvents: 'none' } },
+                                fadeIn: { '0%': { opacity: '0', transform: 'scale(0.98)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                                popIn: { '0%': { opacity: '0', transform: 'scale(0.8)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+                                starFlash: { '0%, 100%': { opacity: '0.1', r: '1.5' }, '50%': { opacity: '0.8', r: '2.5' } },
+                                float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+                                heartbeat: { '0%': { transform: 'scale(1)' }, '15%': { transform: 'scale(1.1)' }, '30%': { transform: 'scale(1)' }, '45%': { transform: 'scale(1.1)' }, '60%': { transform: 'scale(1)' } },
+                                toastSlide: { '0%': { transform: 'translateY(-100%)', opacity: '0' }, '10%': { transform: 'translateY(0)', opacity: '1' }, '90%': { transform: 'translateY(0)', opacity: '1' }, '100%': { transform: 'translateY(-100%)', opacity: '0' } },
+                                breatheRed: { '0%, 100%': { borderColor: 'rgba(255, 50, 50, 0.4)', boxShadow: '0 20px 60px rgba(0,0,0,0.9), 0 0 30px rgba(255, 0, 0, 0.1)' }, '50%': { borderColor: 'rgba(255, 80, 80, 0.7)', boxShadow: '0 20px 60px rgba(0,0,0,0.9), 0 0 50px rgba(255, 0, 0, 0.25)' } },
+                                smoothShimmer: { '0%': { transform: 'translateX(-100%) translateY(-100%) rotate(30deg)' }, '100%': { transform: 'translateX(50%) translateY(50%) rotate(30deg)' } }
+                            }
+                        }
+                    }
+                };
+            }
+        }
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com" onload="setupTailwind()"></script>
+    <script src="https://cdn.jsdelivr.net/npm/astronomy-engine@2/astronomy.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        body { background-color: #000205; background-image: radial-gradient(circle at 50% 120%, #080c14 0%, #000000 100%); color: white; font-family: 'Inter', sans-serif; overflow: hidden; user-select: none; -webkit-tap-highlight-color: transparent; }
+        .font-mystic { font-family: 'Cinzel', serif; }
+        .font-terminal { font-family: 'Courier Prime', monospace; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        
+        .glass-panel { background: linear-gradient(145deg, rgba(20, 30, 45, 0.4), rgba(5, 10, 20, 0.7)); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5); transition: all 0.3s ease; }
+        .glass-panel:hover { border-color: rgba(251, 191, 36, 0.1); background: linear-gradient(145deg, rgba(30, 40, 60, 0.5), rgba(10, 15, 30, 0.8)); }
+        
+        /* Carousel Styles */
+        .carousel-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; gap: 1rem; padding-bottom: 1rem; scroll-behavior: smooth; }
+        .carousel-slide { flex: 0 0 100%; scroll-snap-align: center; opacity: 1; transform: scale(0.98); transition: all 0.5s ease; }
+        .carousel-slide:hover { transform: scale(1); }
+        .carousel-dots { display: flex; justify-content: center; gap: 6px; margin-bottom: 1rem; }
+        .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s; }
+        .dot.active { background: #fbbf24; width: 12px; border-radius: 4px; }
+
+        /* Form Elements */
+        .input-group { position: relative; transition: all 0.3s ease; }
+        .input-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8; transition: color 0.3s; pointer-events: none; z-index: 10; }
+        .input-group:focus-within .input-icon { color: #fbbf24; }
+        .input-field { width: 100%; background-color: rgba(15, 23, 42, 0.6); border: 1px solid #334155; border-radius: 12px; padding: 1rem 1rem 1rem 3rem; color: white; outline: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); font-size: 14px; color-scheme: dark; }
+        .input-field:focus { border-color: #fbbf24; box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.2); background-color: rgba(15, 23, 42, 0.9); }
+        .input-date-atom { padding-left: 0 !important; padding-right: 0 !important; text-align: center; }
+        
+        /* Tab Styles */
+        .tab-active { background-color: #fbbf24; color: #000; box-shadow: 0 0 15px rgba(251,191,36,0.3); }
+        .tab-inactive { background-color: rgba(255,255,255,0.05); color: #94a3b8; }
+        .tab-text { font-size: 9px; text-transform: uppercase; font-weight: bold; }
+        
+        /* AutoComplete / Suggestions */
+        #suggestions-list { position: absolute; top: calc(100% + 4px); left: 0; right: 0; background-color: #050a14; border: 1px solid #1e293b; max-height: 200px; overflow-y: auto; z-index: 100; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.9); }
+        .suggestion-item { padding: 12px 16px; cursor: pointer; border-bottom: 1px solid #1e293b; font-size: 13px; color: #94a3b8; transition: background 0.2s; display: flex; align-items: center; gap: 8px; }
+        .suggestion-item:hover { background-color: #1e293b; color: #fbbf24; }
+
+        /* INTRO NEON CARD STYLES */
+        .neon-card {
+            position: relative; overflow: hidden;
+            width: 85%; max-width: 340px; height: 520px;
+            display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+            padding: 70px 20px;
+            background: rgba(15, 5, 5, 0.7); 
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 50, 50, 0.4);
+            border-top: 1px solid rgba(255, 120, 120, 0.6);
+            border-bottom: 1px solid rgba(255, 0, 0, 0.1);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 40px rgba(255, 0, 0, 0.1);
+            transform: translateZ(0); will-change: transform, box-shadow;
+            cursor: pointer;
+            animation: breatheRed 6s ease-in-out infinite;
+            z-index: 50;
+        }
+        .neon-card::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 250%; height: 200%;
+            background: linear-gradient(to right, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+            transform: rotate(30deg); animation: smoothShimmer 5s infinite linear; pointer-events: none;
+        }
+        .neon-card:active { transform: scale(0.98); border-color: #ff3333; background: rgba(30, 0, 0, 0.8); }
+        .brand-logo { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900; letter-spacing: 0.15em; color: #e5e5e5; z-index: 10; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+        .delta { display: inline-block; color: #ff0000; text-shadow: 0 0 10px #ff0000, 0 0 20px #990000; }
+        .year-text {
+            font-family: 'Cinzel', serif; font-size: 64px; font-weight: 400; letter-spacing: 0.05em;
+            background: linear-gradient(to bottom, #fffbeb 0%, #fbbf24 50%, #b45309 100%);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.8)); z-index: 10;
+        }
+        .bottom-deco { display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 10; }
+        .deco-dot { width: 6px; height: 6px; background-color: #ff0000; border-radius: 50%; box-shadow: 0 0 10px #ff0000; opacity: 0.8; }
+        .tap-hint { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.4em; text-transform: uppercase; }
+
+        .fade-out-screen { opacity: 0; filter: blur(20px); transform: scale(1.05); transition: all 0.8s; pointer-events: none; }
+        
+        /* Utils */
+        .read-more-mask { position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.95) 100%); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 20px; z-index: 10; cursor: not-allowed; }
+        .nasa-footer { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,2,5,0.95); border-top: 1px solid rgba(255,255,255,0.1); padding: 6px; text-align: center; z-index: 9999; font-family: 'Courier Prime', monospace; font-size: 9px; color: #64748b; letter-spacing: 0.1em; display: flex; justify-content: center; gap: 10px; pointer-events: auto; }
+        
+        /* Toast Notification */
+        #toast-notification { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: center; pointer-events: none; }
+        #toast-notification.hidden { display: none !important; }
+        .toast-content { background: rgba(20, 184, 166, 0.9); backdrop-filter: blur(8px); padding: 12px 24px; border-radius: 0 0 16px 16px; color: white; font-weight: bold; font-size: 12px; letter-spacing: 0.05em; box-shadow: 0 4px 20px rgba(20, 184, 166, 0.4); border: 1px solid rgba(255,255,255,0.2); border-top: none; }
+    </style>
+</head>
+<body class="flex justify-center h-screen w-full bg-slate-950 font-sans antialiased">
+
+    <!-- TOAST GERAL -->
+    <div id="toast-notification" class="hidden"><div class="toast-content animate-toast-slide"></div></div>
+
+    <!-- MODAIS GLOBAIS -->
+    <div id="modal-house" class="fixed inset-0 z-[10000] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-xl p-8 animate-pop-in fixed w-full h-full"><div class="glass-panel w-full max-w-sm p-6 rounded-2xl relative border-t border-gold-500/30"><button onclick="window.UI.closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button><h3 id="modal-title" class="text-xl font-mystic text-gold-400 mb-1">...</h3><p id="modal-subtitle" class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">...</p><p id="modal-text" class="text-sm text-slate-200 leading-relaxed font-light">...</p><div id="modal-premium-hint" class="hidden mt-4 pt-4 border-t border-white/5 text-[10px] text-gold-500 italic">★ Decanato e aspectos profundos disponíveis na versão Premium.</div></div></div>
+    
+    <div id="modal-legal" class="fixed inset-0 z-[10000] hidden flex-col items-center justify-center bg-slate-950/95 backdrop-blur-xl p-8 animate-pop-in fixed w-full h-full"><div class="glass-panel w-full max-w-md p-8 rounded-2xl relative border-t border-slate-700 h-[70vh] overflow-hidden flex flex-col"><button onclick="window.UI.closeLegal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button><h3 id="legal-title" class="text-xl font-mystic text-white mb-6 border-b border-white/10 pb-2">...</h3><div id="legal-content" class="text-sm text-slate-300 leading-relaxed font-light overflow-y-auto pr-2 space-y-4"></div></div></div>
+
+    <!-- BACKGROUND GLOBAL -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-30%] left-[-20%] w-[90%] h-[70%] bg-blue-900/5 rounded-full blur-[150px] animate-pulse-glow"></div>
+        <div class="absolute bottom-[-20%] right-[-20%] w-[90%] h-[70%] bg-indigo-900/5 rounded-full blur-[150px] animate-pulse-glow" style="animation-delay: 3s"></div>
+        <svg class="absolute inset-0 w-full h-full opacity-50" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" /><stop offset="20%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" /><stop offset="50%" style="stop-color:rgba(255,255,255,0.6);stop-opacity:1" /><stop offset="80%" style="stop-color:rgba(255,255,255,0.3);stop-opacity:1" /><stop offset="100%" style="stop-color:rgba(255,255,255,0);stop-opacity:0" /></linearGradient></defs><g stroke="url(#line-grad)" stroke-width="0.6" fill="none"><path d="M40 60 L90 100 L140 70 M90 100 L100 160" /><path d="M320 350 L360 420 M320 350 L280 300 L350 280" /><path d="M100 350 L160 380 L220 320 M160 380 L140 450" /><path d="M300 60 L360 100 L320 150 M360 100 L420 80" /></g><g fill="#ffffff"><circle cx="40" cy="60" r="1.2" class="animate-star-flash" style="animation-delay: 0s" /><circle cx="90" cy="100" r="1.5" class="animate-star-flash" style="animation-delay: 1.2s" /><circle cx="140" cy="70" r="1.2" class="animate-star-flash" style="animation-delay: 0.5s" /><circle cx="100" cy="160" r="1.0" class="animate-star-flash" style="animation-delay: 2.1s" /><circle cx="320" cy="350" r="1.5" class="animate-star-flash" style="animation-delay: 0.3s" /><circle cx="360" cy="420" r="1.2" class="animate-star-flash" style="animation-delay: 1.8s" /><circle cx="280" cy="300" r="1.0" class="animate-star-flash" style="animation-delay: 2.5s" /><circle cx="350" cy="280" r="1.5" class="animate-star-flash" style="animation-delay: 0.8s" /></g></svg>
+        <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
+    </div>
+
+    <!-- TELA 1: CAPA NEON (INTRO/TAPETE VERMELHO) -->
+    <div id="screen-intro" class="absolute inset-0 z-[999] flex flex-col items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+        <div class="neon-card" onclick="window.UI.enterFromCover()">
+            <div class="brand-logo">LUCI<span class="delta">Δ</span></div>
+            <div class="year-text">2026</div>
+            <div class="bottom-deco"><div class="deco-dot"></div><div class="tap-hint">Entrar</div></div>
+        </div>
+        <div class="flex gap-4 mt-8 absolute bottom-12"><span class="cursor-pointer text-xs text-slate-500 hover:text-white transition-colors uppercase tracking-wider" onclick="window.UI.openLegal('privacy'); event.stopPropagation();">Privacidade</span><span class="cursor-pointer text-xs text-slate-500 hover:text-white transition-colors uppercase tracking-wider" onclick="window.UI.openLegal('terms'); event.stopPropagation();">Termos</span></div>
+    </div>
+
+    <!-- TELA 2: APLICAÇÃO PRINCIPAL -->
+    <div class="w-full max-w-[440px] h-full bg-slate-950/80 relative shadow-2xl overflow-hidden flex flex-col border-x border-white/5 z-10 hidden" id="app-container">
+        
+        <!-- HEADER INTERNO -->
+        <header class="absolute top-0 left-0 w-full z-[60] flex flex-col items-center pt-8 pb-4 bg-gradient-to-b from-slate-950/90 via-slate-950/50 to-transparent pointer-events-none">
+            <h1 class="text-3xl font-mystic font-bold text-white tracking-tighter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] flex items-center gap-1 pointer-events-auto">
+                LUCI<span class="text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.8)]">Δ</span>
+            </h1>
+        </header>
+
+        <!-- SUB-TELA A: DADOS (INPUT) -->
+        <div id="screen-data" class="absolute inset-0 z-40 flex flex-col pt-28 pb-10">
+            <div class="px-6 pb-2 z-10 flex flex-col relative">
+                <h2 class="text-2xl font-mystic text-white">Configuração</h2>
+                <p class="text-slate-400 text-xs mt-1 font-light">Insira os dados exatos para gerar mapas.</p>
+            </div>
+            <div class="flex-1 px-6 space-y-5 overflow-y-auto hide-scrollbar z-10 pb-32">
+                <div class="space-y-1"><label class="text-[10px] font-bold text-gold-500 uppercase tracking-wider ml-1">Nome Completo</label><div class="input-group"><svg class="input-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg><input type="text" id="inp-name" class="input-field" placeholder="Ex: Ana Silva"></div></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-1"><label class="text-[10px] font-bold text-gold-500 uppercase tracking-wider ml-1">Data de Nascimento</label><div class="flex gap-2"><input type="number" id="inp-day" placeholder="DD" class="input-field input-date-atom w-[30%] px-0 pl-0" maxlength="2"><input type="number" id="inp-month" placeholder="MM" class="input-field input-date-atom w-[30%] px-0 pl-0" maxlength="2"><input type="number" id="inp-year" placeholder="AAAA" class="input-field input-date-atom w-[40%] px-0 pl-0" maxlength="4"></div></div>
+                    <div class="space-y-1"><label class="text-[10px] font-bold text-gold-500 uppercase tracking-wider ml-1">Hora Exata</label><div class="input-group"><svg class="input-icon w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><input type="time" id="inp-time" class="input-field pl-8"></div></div>
+                </div>
+                
+                <div class="space-y-1 suggestions-wrapper">
+                    <label class="text-[10px] font-bold text-gold-500 uppercase tracking-wider ml-1">Local de Nascimento (Brasil)</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="col-span-1 relative">
+                            <select id="sel-state" class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-2 py-3 text-xs text-white outline-none focus:border-gold-500 appearance-none transition-colors cursor-pointer">
+                                <option value="" disabled selected>UF</option>
+                            </select>
+                            <div class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500 text-[10px]">▼</div>
+                        </div>
+                        <div class="col-span-2 relative">
+                            <select id="sel-city" disabled class="w-full bg-slate-900/50 border border-slate-800 rounded-xl px-3 py-3 text-xs text-slate-400 outline-none focus:border-gold-500 appearance-none transition-colors disabled:opacity-50 cursor-not-allowed">
+                                <option value="" disabled selected>Escolha o Estado...</option>
+                            </select>
+                            <div class="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500 text-[10px]">▼</div>
+                            <div id="city-loading" class="absolute right-6 top-1/2 -translate-y-1/2 hidden">
+                                <div class="w-3 h-3 border-2 border-gold-500 border-t-transparent rounded-full animate-spin"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="inp-local">
+                    <div id="suggestions-list"></div> 
+                </div>
+
+                <div id="timezone-display" class="hidden p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-start gap-3 animate-slide-up"><div class="mt-0.5 text-blue-400 p-1 bg-blue-500/20 rounded-full"><svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></div><div><p class="text-[10px] font-bold text-blue-400 uppercase tracking-wide">Engine Inteligente</p><p class="text-xs text-blue-100/90 leading-tight mt-1" id="tz-msg">Detectando Fuso...</p></div></div>
+                <input type="hidden" id="hidden-lat"><input type="hidden" id="hidden-lon"><input type="hidden" id="hidden-offset">
+            </div>
+            <div class="absolute bottom-0 w-full p-6 pb-20 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent z-20 flex justify-center"><div class="flex items-center gap-4 cursor-pointer group" onclick="window.Engine.processData()"><span class="text-xs font-bold tracking-[0.25em] text-white/90 group-hover:text-gold-400 transition-colors uppercase">GERAR MAPAS</span><div class="orb-btn group-hover:scale-110 group-active:scale-95"><svg class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" class="opacity-50" /><path stroke-linecap="round" stroke-linejoin="round" d="M13 9l3 3m0 0l-3 3m3-3H8" /></svg></div></div></div>
+        </div>
+
+        <div id="theatrical-loader" class="absolute inset-0 z-[65] flex flex-col items-center justify-center bg-slate-950 hidden">
+            <div class="relative flex items-center justify-center w-32 h-32 mb-4">
+                <div class="absolute inset-0 border-2 border-red-500/20 border-t-red-500 rounded-full animate-spin-slow"></div>
+                <div class="absolute inset-2 border-2 border-gold-500/20 border-b-gold-500 rounded-full animate-spin-reverse-slow"></div>
+                <div class="absolute inset-6 border border-white/10 rounded-full animate-pulse"></div>
+                <div class="text-red-500 text-4xl loader-heart z-10">♥</div>
+            </div>
+            <p class="text-xs font-mystic text-gold-500 uppercase tracking-widest animate-pulse">Nascimento Astral...</p>
+        </div>
+
+        <!-- SUB-TELA B: DASHBOARD -->
+        <div id="screen-dash" class="absolute inset-0 z-30 hidden flex-col pt-28 pb-10">
+            <div class="px-6 pb-2 z-10 flex flex-col items-start bg-gradient-to-b from-slate-950 to-slate-950/0">
+                 <div class="flex justify-between w-full items-center mb-1">
+                     <div>
+                         <h2 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">MAPA OCIDENTAL PESSOAL DE</h2>
+                         <p id="dash-user" class="text-lg text-white font-mystic font-bold mb-4">...</p>
+                     </div>
+                     <div class="flex gap-2 items-center">
+                         <button id="btn-reveal-map" onclick="window.UI.triggerReveal()" class="px-3 py-1.5 rounded bg-gradient-to-r from-red-600 to-red-800 border border-red-500 text-[10px] font-bold text-white tracking-wider animate-pulse shadow-[0_0_15px_rgba(239,68,68,0.4)]">REVELAR DESTINO</button>
+                         <button onclick="window.Persistence.clearCurrentData()" class="text-[9px] font-bold text-slate-500 border border-slate-500/50 px-2 py-1.5 rounded hover:bg-slate-500/10 transition-colors flex items-center gap-1">NOVO <span class="text-gold-400 text-xs">+</span></button>
+                     </div>
+                 </div>
+                 <!-- NAVIGATION TABS -->
+                 <div class="w-full flex p-1 bg-slate-900/50 rounded-xl border border-white/5 mb-2 gap-1">
+                     <button onclick="window.UI.switchTab('astral')" id="tab-astral" class="flex-1 py-2 text-[10px] font-bold uppercase rounded-lg transition-all tab-active tab-text">Astral</button>
+                     <button onclick="window.UI.switchTab('chinese')" id="tab-chinese" class="flex-1 py-2 text-[10px] font-bold uppercase rounded-lg transition-all tab-inactive tab-text">Chinês</button>
+                     <button onclick="window.UI.switchTab('numero')" id="tab-numero" class="flex-1 py-2 text-[10px] font-bold uppercase rounded-lg transition-all tab-inactive tab-text">Numerologia</button>
+                     <button onclick="window.UI.switchTab('luck')" id="tab-luck" class="flex-1 py-2 text-[10px] font-bold uppercase rounded-lg transition-all tab-inactive tab-text flex items-center justify-center gap-1">
+                         <span>Sorte</span>
+                         <span class="text-green-500 text-xs">🍀</span>
+                     </button>
+                 </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto z-10 relative pb-24 px-6 pt-2">
+                <div id="map-content-overlay" class="absolute inset-0 bg-slate-950 z-20 flex items-center justify-center opacity-95">
+                    <p class="text-xs text-slate-500 uppercase tracking-widest">Aguardando Revelação...</p>
+                </div>
+
+                <div id="view-astral" class="hidden animate-fade-in opacity-0 transition-opacity duration-1000">
+                    <div class="carousel-dots">
+                        <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    </div>
+                    <div class="carousel-container" onscroll="window.UI.updateDots(this)">
+                        
+                        <div class="carousel-slide">
+                            <div class="p-6 rounded-2xl border-l-2 border-l-gold-500 glass-panel h-full flex flex-col relative overflow-hidden">
+                                <p class="text-[10px] font-bold text-gold-500 uppercase tracking-widest mb-2 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-gold-500 rounded-full"></span> Sua Essência (Sol)</p>
+                                <h3 id="val-sun" class="text-4xl font-mystic text-white mb-2">...</h3>
+                                <p id="desc-sun" class="text-xs text-slate-200 leading-relaxed font-light mt-2 mb-2">...</p>
+                                <div id="container-sun-premium" class="relative mt-2 hidden">
+                                    <p id="text-sun-premium" class="text-xs text-slate-300 leading-relaxed"></p> 
+                                </div>
+                                <div id="mask-sun" class="read-more-mask flex flex-col items-center">
+                                    <p class="text-xs text-slate-500 blur-sm mb-2 select-none text-center px-4">Carregando interpretação estelar...</p>
+                                    <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Análise Completa Premium</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="p-6 rounded-2xl border-l-2 border-l-teal-500 glass-panel h-full flex flex-col relative overflow-hidden">
+                                <p class="text-[10px] font-bold text-teal-500 uppercase tracking-widest mb-2 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-teal-500 rounded-full"></span> Emocional (Lua)</p>
+                                <h3 id="val-moon" class="text-4xl font-mystic text-white mb-2">...</h3>
+                                <p id="val-moon-phase" class="text-xs font-bold text-teal-200 mb-2 uppercase tracking-wider">...</p>
+                                <p id="val-moon-desc" class="text-xs text-slate-200 leading-relaxed font-light mt-2 mb-2">...</p>
+                                <div id="container-moon-premium" class="relative mt-2 hidden">
+                                    <p id="text-moon-premium" class="text-xs text-slate-300 leading-relaxed"></p> 
+                                </div>
+                                <div id="mask-moon" class="read-more-mask flex flex-col items-center">
+                                    <p class="text-xs text-slate-500 blur-sm mb-2 select-none text-center px-4">Carregando interpretação estelar...</p>
+                                    <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Análise Completa Premium</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="p-6 rounded-2xl border-l-2 border-l-red-500 glass-panel h-full flex flex-col relative overflow-hidden">
+                                <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-2 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-red-500 rounded-full"></span> Máscara (Asc)</p>
+                                <h3 id="val-asc" class="text-4xl font-mystic text-white mb-2">...</h3>
+                                <p class="text-xs font-bold text-red-200 mb-2 uppercase tracking-wider">Primeira Impressão</p>
+                                <p id="desc-asc" class="text-xs text-slate-200 leading-relaxed font-light mt-2 mb-2">Como o mundo te vê e como você inicia as coisas.</p>
+                                <div id="container-asc-premium" class="relative mt-2 hidden">
+                                    <p id="text-asc-premium" class="text-xs text-slate-300 leading-relaxed"></p> 
+                                </div>
+                                <div id="mask-asc" class="read-more-mask flex flex-col items-center">
+                                    <p class="text-xs text-slate-500 blur-sm mb-2 select-none text-center px-4">Carregando interpretação estelar...</p>
+                                    <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Análise Completa Premium</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-slide">
+                            <div class="p-6 rounded-2xl border-l-2 border-l-purple-500 glass-panel h-full flex flex-col justify-center">
+                                <p class="text-[10px] font-bold text-purple-500 uppercase tracking-widest mb-2 flex items-center gap-2"><span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span> Sinastria</p>
+                                <div class="grid grid-cols-2 gap-4 mt-2">
+                                    <div><p class="text-[9px] text-slate-400 uppercase">Oposto (Atração)</p><h4 id="val-opposite" class="text-lg font-mystic text-white">...</h4></div>
+                                    <div><p class="text-[9px] text-slate-400 uppercase">Complementar</p><h4 id="val-complement" class="text-lg font-mystic text-white">...</h4></div>
+                                </div>
+                                <p class="text-xs text-slate-300 leading-relaxed font-light border-t border-white/5 pt-2 mt-auto">O signo oposto traz o que te falta. O complementar flui com sua energia natural.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-full mt-4 mb-2 animate-fade-in">
+                        <button onclick="window.UI.shareResult()" class="w-full py-3 rounded-xl border border-gold-500/30 bg-gold-500/10 text-gold-400 font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-gold-500/20 transition-colors shadow-[0_0_15px_rgba(251,191,36,0.15)] group">
+                            <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>
+                            Compartilhar Arquétipo
+                        </button>
+                    </div>
+                    <div id="houses-container"><h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3 mt-6">Casas Angulares (Free)</h4><div id="free-houses-list" class="space-y-3"></div><div id="unlocked-content" class="hidden animate-fade-in"><h4 class="text-xs font-bold text-gold-500 uppercase tracking-widest mb-3 mt-6">Análise Completa (12 Casas)</h4><div id="full-houses-list" class="space-y-4"></div></div></div>
+                </div>
+
+                <div id="view-chinese" class="hidden animate-fade-in opacity-0">
+                    <div class="p-6 rounded-2xl border-l-2 border-l-red-500 glass-panel mb-4 relative overflow-hidden">
+                        <p class="text-[10px] font-bold text-red-500 uppercase tracking-widest mb-2">Signo Animal</p>
+                        <h3 id="val-chi-sign" class="text-3xl font-mystic text-white mb-2">...</h3>
+                        <p id="val-chi-element" class="text-xs text-slate-300 leading-relaxed font-light mb-4">Elemento: ...</p>
+                        <div class="grid grid-cols-2 gap-2 border-t border-white/5 pt-3 mb-3">
+                            <div><p class="text-[9px] text-slate-500 uppercase">Aliados</p><p id="chi-allies" class="text-xs text-white">...</p></div>
+                            <div><p class="text-[9px] text-slate-500 uppercase">Conflito</p><p id="chi-enemy" class="text-xs text-white">...</p></div>
+                        </div>
+                        <div class="relative">
+                            <p id="desc-chi" class="text-xs text-slate-400 leading-relaxed mb-2">...</p>
+                            
+                             <div id="container-chi-premium" class="relative mt-2 hidden">
+                                <p id="text-chi-premium" class="text-xs text-slate-300 leading-relaxed"></p> 
+                            </div>
+                            <div id="mask-chi" class="read-more-mask flex flex-col items-center">
+                                <p class="text-xs text-slate-500 blur-sm mb-2 select-none">Lorem ipsum dolor sit amet misterio oculto.</p>
+                                <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Análise Completa Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="view-numero" class="hidden animate-fade-in opacity-0">
+                    <div class="p-6 rounded-2xl border-l-2 border-l-teal-500 glass-panel mb-4 relative overflow-hidden">
+                        <p class="text-[10px] font-bold text-teal-500 uppercase tracking-widest mb-2">1. Missão de Vida</p>
+                        <h3 id="val-num-path" class="text-4xl font-mystic text-white mb-2">...</h3>
+                        <div class="border-t border-white/5 pt-3 mb-3"><p class="text-[9px] text-slate-500 uppercase">Energia do Ano (Solar)</p><p id="num-match" class="text-xs text-white leading-relaxed mt-1">...</p></div>
+                        <div class="relative mt-2">
+                            <p id="desc-num" class="text-xs text-slate-400 leading-relaxed mb-2">...</p>
+                            
+                            <div id="container-num-premium" class="relative mt-2 hidden">
+                                <p id="text-num-premium" class="text-xs text-slate-300 leading-relaxed"></p> 
+                            </div>
+                            <div id="mask-num" class="read-more-mask flex flex-col items-center">
+                                <p class="text-xs text-slate-500 blur-sm mb-2 select-none">Lorem ipsum dolor sit amet misterio oculto.</p>
+                                <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">Análise Completa Premium</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="container-num-extra-premium" class="hidden space-y-4 animate-fade-in">
+                        <div class="p-6 rounded-2xl glass-panel">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">2. Desejo da Alma</p>
+                            <h3 id="val-num-soul" class="text-xl text-white mb-2">...</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">Seus sonhos mais íntimos e motivações ocultas...</p>
+                        </div>
+                        <div class="p-6 rounded-2xl glass-panel">
+                            <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">3. Ano Pessoal 2026</p>
+                            <h3 id="val-num-year" class="text-xl text-white mb-2">...</h3>
+                            <p class="text-xs text-slate-400 leading-relaxed">As energias que regerão seu ano de 2026...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW LUCK VIEW CONTAINER -->
+                <div id="view-luck" class="hidden animate-fade-in opacity-0">
+                    <div class="p-6 rounded-2xl border-l-2 border-l-green-500 glass-panel mb-4 relative overflow-hidden">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-[10px] font-bold text-green-500 uppercase tracking-widest">Biscoito da Sorte</p>
+                            <span class="text-xl animate-pulse">🍀</span>
+                        </div>
+                        
+                        <!-- NEW COOKIE CONTAINER -->
+                        <div class="relative p-6 rounded-xl bg-slate-900/60 border border-green-500/20 shadow-[0_0_15px_rgba(34,197,94,0.1)] mb-6 min-h-[120px] flex items-center justify-center text-center group cursor-pointer" onclick="window.Engine.newCookie()">
+                            <p id="luck-quote" class="text-sm text-white font-mystic italic leading-relaxed">...</p>
+                            <p class="text-[9px] text-green-500/50 absolute bottom-2 font-mono uppercase tracking-widest group-hover:text-green-400 transition-colors">Toque para nova mensagem</p>
+                        </div>
+                        
+                        <div class="border-t border-white/5 pt-4">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div id="luck-color-dot" class="w-8 h-8 rounded-full shadow-lg border border-white/10"></div>
+                                <div>
+                                    <p class="text-[9px] text-slate-500 uppercase">Cor de Poder</p>
+                                    <p id="luck-color-name" class="text-sm font-bold text-white">...</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-[9px] text-slate-500 uppercase mb-1">Pedra Guia</p>
+                                <p id="luck-stone" class="text-xs text-slate-300 leading-relaxed">...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAYWALL SECTION + VOUCHER -->
+                <div id="paywall-section" class="relative mt-8">
+                    <div id="paywall-overlay" class="flex flex-col items-center justify-start pt-6 px-8 text-center pb-20">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-slate-950 flex items-center justify-center text-2xl mb-5 shadow-[0_0_40px_rgba(251,191,36,0.3)] animate-lock-pulse">🔒</div>
+                        <h3 class="text-xl font-mystic text-white mb-2">Desbloqueie o Grimório</h3>
+                        <p class="text-xs text-slate-400 mb-6 max-w-[260px] leading-relaxed">Acesso total às 12 Casas, Análise Chinesa Profunda, Numerologia Completa e Decanatos.</p>
+                        <div id="lead-form" class="w-full mb-4"><input type="email" id="inp-lead-email" placeholder="Seu melhor e-mail" class="input-field mb-3 text-center" /><input type="tel" id="inp-lead-phone" placeholder="WhatsApp (DDD + Número)" class="input-field mb-4 text-center" /></div>
+                        
+                        <!-- COUPON AREA (CORRETO) -->
+                        <div id="coupon-area" class="w-full mb-4 pt-2 pb-2">
+                             <p class="text-[12px] text-gold-500 mb-2 cursor-pointer hover:underline uppercase tracking-wider font-bold" onclick="document.getElementById('coupon-input-group').classList.remove('hidden'); this.style.display='none'">EU TENHO UM VOUCHER</p>
+                             <div id="coupon-input-group" class="hidden flex gap-2 animate-fade-in">
+                                <input id="inp-coupon" type="text" placeholder="CÓDIGO" class="input-field text-center uppercase text-xs" style="padding: 0.5rem;">
+                                <button onclick="window.Payment.checkCoupon()" class="bg-gold-500 text-slate-950 font-bold text-xs px-3 rounded-xl hover:bg-gold-400">OK</button>
+                             </div>
+                        </div>
+
+                        <button id="btn-pay" onclick="window.Payment.processLeadAndPay()" class="w-full py-4 rounded-xl bg-white text-slate-950 font-bold uppercase tracking-widest text-xs shadow-xl relative overflow-hidden group hover:scale-[1.02] transition-transform"><span class="relative z-10 flex items-center justify-center gap-2">Desbloquear por R$ 37,90</span><div class="absolute inset-0 bg-gold-400/20 translate-x-[-100%] group-hover:animate-shimmer z-0"></div></button>
+                        <p class="text-[9px] text-slate-600 mt-3 font-mono">AMBIENTE SEGURO</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="nasa-footer"><span>ALL RIGHTS RESERVED</span> • <strong>SYSTEM SECURE</strong> • <span>LUCIA.26</span></div>
+    </div>
+
+    <!-- Scripts do Sistema -->
+    <script>
+        const SUPABASE_URL = 'https://kaqqiegjhcamipaonzvu.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImthcXFpZWdqaGNhbWlwYW9uenZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU5MTc1NjQsImV4cCI6MjA4MTQ5MzU2NH0.VS6haWV9wdWyDzRQBMfTy9WQ26oVGXi4h007ILId9dk';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        const CHECKOUT_URL = "https://pay.kiwify.com.br/RnKpl7E"; 
+
+        const DB = {
+            signs: [
+                { key: "Aries", pt: "Áries", element: "Fogo", desc: "A chama primordial. Traz coragem, impulsividade e um desejo incontrolável de iniciar novos ciclos.", opposite: "Libra", complement: "Leão/Sagitário" },
+                { key: "Taurus", pt: "Touro", element: "Terra", desc: "A solidez da terra. Representa a busca por segurança, prazer sensorial e acumulação de recursos.", opposite: "Escorpião", complement: "Virgem/Capricórnio" },
+                { key: "Gemini", pt: "Gêmeos", element: "Ar", desc: "A mente inquieta. Traz curiosidade, adaptabilidade e necessidade de comunicação.", opposite: "Sagitário", complement: "Libra/Aquário" },
+                { key: "Cancer", pt: "Câncer", element: "Água", desc: "O berço emocional. Rege as raízes, a proteção e a memória.", opposite: "Capricórnio", complement: "Escorpião/Peixes" },
+                { key: "Leo", pt: "Leão", element: "Fogo", desc: "O coração radiante. Traz criatividade, nobreza e desejo de reconhecimento.", opposite: "Aquário", complement: "Áries/Sagitário" },
+                { key: "Virgo", pt: "Virgem", element: "Terra", desc: "O olhar analítico. Foca no aperfeiçoamento, na ordem e no serviço.", opposite: "Peixes", complement: "Touro/Capricórnio" },
+                { key: "Libra", pt: "Libra", element: "Ar", desc: "O espelho do outro. Busca harmonia, beleza e justiça.", opposite: "Áries", complement: "Gêmeos/Aquário" },
+                { key: "Scorpio", pt: "Escorpião", element: "Água", desc: "As águas profundas. Trata de poder, transformação e mistérios.", opposite: "Touro", complement: "Câncer/Peixes" },
+                { key: "Sagittarius", pt: "Sagitário", element: "Fogo", desc: "A flecha da verdade. Busca sentido, expansão e horizontes distantes.", opposite: "Gêmeos", complement: "Áries/Leão" },
+                { key: "Capricorn", pt: "Capricórnio", element: "Terra", desc: "O topo da montanha. Representa ambição, tempo e estrutura.", opposite: "Câncer", complement: "Touro/Virgem" },
+                { key: "Aquarius", pt: "Aquário", element: "Ar", desc: "O visionário coletivo. Traz inovação, rebeldia e foco no futuro.", opposite: "Leão", complement: "Gêmeos/Libra" },
+                { key: "Pisces", pt: "Peixes", element: "Água", desc: "O oceano sem fim. Rege a espiritualidade, a empatia e o sonho.", opposite: "Virgem", complement: "Câncer/Escorpião" }
+            ],
+            interpretacoes: {
+                Aries: { sol: "Sua alma escolheu a frequência da iniciativa. Onde há estagnação, sua presença traz o movimento necessário.", lua: "Suas emoções operam como fusíveis curtos; a segurança para você não é o abrigo, mas a capacidade de agir.", asc: "Você projeta urgência e coragem. O mundo abre passagem porque sente que você não pedirá licença." },
+                Taurus: { sol: "Você não veio para sonhar, mas para tornar o etéreo em algo tangível e duradouro.", lua: "A estabilidade não é um luxo, é necessidade vital. Suas emoções se acalmam através do toque e da posse.", asc: "Sua presença transmite uma solidez inabalável. O mundo te vê como o porto seguro em meio à tempestade." },
+                Gemini: { sol: "Sua mente é um condutor elétrico. Sua missão envolve conectar polaridades e traduzir o complexo.", lua: "O silêncio é seu inimigo. Para se sentir seguro, você precisa verbalizar e circular informações.", asc: "Você se adapta antes mesmo de entrar. O mundo te vê como alguém jovial, curioso e impossível de prender." },
+                Cancer: { sol: "Sua luz protege o que é sagrado. Você tem o poder de criar vínculos emocionais que atravessam o tempo.", lua: "Suas emoções são cíclicas como a maré. Você absorve a atmosfera ao redor; sua proteção psíquica é vital.", asc: "Você aborda o mundo com cautela. O mundo sente sua empatia, mas também sua barreira impenetrável." },
+                Leo: { sol: "Você é o centro gravitacional. Sua existência é uma performance de autoafirmação que inspira outros.", lua: "Você precisa de admiração como precisa de ar. A ferida surge quando você é ignorado.", asc: "Você entra no ambiente e a energia muda. O mundo te vê com respeito e expectativa de liderança." },
+                Virgo: { sol: "Sua alma busca a ordem no caos. Você vê as falhas que ninguém vê e tem a ferramenta para corrigi-las.", lua: "O caos emocional te adoece. Você racionaliza sentimentos para organizá-los em caixas compreensíveis.", asc: "Você observa antes de participar. O mundo te vê como alguém útil, preciso e discretamente indispensável." },
+                Libra: { sol: "Sua missão é a harmonização. Você não busca o conflito, mas a síntese perfeita entre duas verdades.", lua: "É difícil saber o que você sente sozinho, pois suas emoções reagem ao parceiro.", asc: "Você desvia de atritos com elegância. O mundo te vê como alguém acessível, charmoso e justo." },
+                Scorpio: { sol: "Você veio transmutar dor em poder. O superficial te ofende; sua luz só brilha nas profundezas.", lua: "Intensidade não é escolha, é fábrica. Você sente o que não foi dito e guarda segredos como cofres.", asc: "Você penetra as máscaras sociais instantaneamente. O mundo te teme ou te deseja, mas nunca te ignora." },
+                Sagittarius: { sol: "Sua busca não é por respostas, mas pelo sentido. Você expande horizontes físicos e mentais por onde passa.", lua: "O apego te sufoca. Você precisa de espaço geográfico e filosófico para sentir que a vida vale a pena.", asc: "Você chega com entusiasmo. O mundo te vê como um mestre ou um aventureiro incansável." },
+                Capricorn: { sol: "Você entende a hierarquia e o esforço. Sua luz é uma construção que resiste aos séculos.", lua: "Demonstrar carência parece fraqueza. Você processa emoções com pragmatismo e controle absoluto.", asc: "Você parece mais sério do que é. O mundo te vê como alguém competente a quem se deve obediência." },
+                Aquarius: { sol: "Você acessa o futuro e o traz para o agora. Sua identidade é quebrada para caber no todo universal.", lua: "Você analisa emoções como dados. A liberdade de ser estranho é seu único conforto real.", asc: "Você quebra padrões apenas por estar presente. O mundo te vê como imprevisível, original e distante." },
+                Pisces: { sol: "Onde termina você e começa o universo? Sua missão é dissolver fronteiras através da compaixão.", lua: "Você não tem pele emocional. Sente a dor do mundo como sua; o isolamento é sua defesa.", asc: "Você parece flutuar acima do chão. O mundo te vê como esquivo, mágico e difícil de definir." }
+            },
+            
+            premiumContent: {
+                sun: "A posição solar neste grau exato revela uma missão de alma conectada aos ancestrais e uma força vital que se renova através de ciclos de 7 anos. A ativação deste potencial depende exclusivamente da sua consciência.",
+                moon: "Suas reações instintivas são governadas por memórias de vidas passadas e uma necessidade profunda de segurança que apenas o conhecimento do mapa revela. O equilíbrio emocional virá ao integrar esta sombra.",
+                asc: "O regente do seu ascendente está posicionado em uma casa de poder, indicando que sua imagem pública passará por três grandes transformações ao longo da vida, moldando seu destino profissional.",
+                chinese: "O Arquétipo Profundo deste signo revela uma conexão espiritual única com o elemento regente, influenciando diretamente sua prosperidade nos anos do Dragão e da Serpente. Conhecer este ciclo é vital.",
+                numerology: "Seus pináculos de vida indicam que após os 30 anos haverá uma mudança brusca de frequência vibratória, exigindo alinhamento imediato com seu propósito de alma para evitar rupturas."
+            },
+            houses: ["Identidade (Casa 1)", "Valores (Casa 2)", "Comunicação (Casa 3)", "Lar (Casa 4)", "Criatividade (Casa 5)", "Rotina (Casa 6)", "Parcerias (Casa 7)", "Transformação (Casa 8)", "Filosofia (Casa 9)", "Carreira (Casa 10)", "Amigos (Casa 11)", "Inconsciente (Casa 12)"],
+            chinese: {
+                animals: ["Rato", "Boi", "Tigre", "Coelho", "Dragão", "Serpente", "Cavalo", "Cabra", "Macaco", "Galo", "Cão", "Porco"],
+                allies: ["Macaco/Dragão", "Serpente/Galo", "Cavalo/Cão", "Porco/Cabra", "Rato/Macaco", "Boi/Galo", "Tigre/Cão", "Coelho/Porco", "Rato/Macaco", "Boi/Galo", "Tigre/Cão", "Coelho/Porco"],
+                enemies: ["Cavalo", "Cabra", "Macaco", "Galo", "Cão", "Porco", "Rato", "Boi", "Tigre", "Coelho", "Dragão", "Serpente"],
+                elements: ["Metal", "Água", "Madeira", "Fogo", "Terra"],
+                desc: ["Astuto e versátil.", "Confiável e forte.", "Corajoso e líder.", "Elegante e diplomata.", "Poderoso e carismático.", "Sábia e enigmática.", "Livre e energético.", "Criativa e pacífica.", "Inovador e ágil.", "Observador e trabalhador.", "Leal e honesto.", "Generoso e diligente."]
+            },
+            numerology: {
+                desc: {
+                    1: "O Líder. Indica um caminho de independência.",
+                    2: "O Diplomata. Indica um caminho de cooperação.",
+                    3: "O Comunicador. Indica um caminho de expressão criativa.",
+                    4: "O Construtor. Indica um caminho de trabalho duro.",
+                    5: "O Viajante. Indica um caminho de liberdade.",
+                    6: "O Cuidador. Indica um caminho de responsabilidade.",
+                    7: "O Sábio. Indica um caminho de análise.",
+                    8: "O Realizador. Indica um caminho de poder.",
+                    9: "O Humanitário. Indica um caminho de compaixão.",
+                    11: "O Iluminador (Mestre). Intuição elevada.",
+                    22: "O Construtor Mestre. Materialização.",
+                    33: "O Professor Mestre. Amor incondicional."
+                },
+                matches: {
+                    1: "1, 5, 7", 2: "2, 4, 8", 3: "3, 6, 9", 4: "2, 4, 8", 5: "1, 5, 7", 6: "3, 6, 9", 7: "1, 5, 7", 8: "2, 4, 8", 9: "3, 6, 9", 11: "2, 11", 22: "4, 22", 33: "6, 33"
+                }
+            },
+            luck: {
+                colors: ["Azul Safira", "Verde Esmeralda", "Dourado Solar", "Violeta Místico", "Vermelho Rubi", "Prata Lunar", "Índigo Profundo", "Turquesa"],
+                stones: ["Ametista", "Quartzo Rosa", "Citrino", "Olho de Tigre", "Turmalina Negra", "Lápis Lazúli", "Pedra da Lua", "Granada"],
+                quotes: [
+                    "Os dois dias mais importantes da sua vida: o dia em que você nasceu e o dia em que descobriu o seu propósito. — Mark Twain",
+                    "A sorte favorece a mente preparada. — Louis Pasteur",
+                    "O único lugar onde o sucesso vem antes do trabalho é no dicionário. — Albert Einstein",
+                    "Você nunca sabe que resultados virão da sua ação. Mas se você não fizer nada, não existirão resultados. — Mahatma Gandhi",
+                    "A melhor maneira de prever o futuro é criá-lo. — Peter Drucker",
+                    "A persistência é o caminho do êxito. — Charles Chaplin",
+                    "Não espere por oportunidades extraordinárias. Agarre ocasiões comuns e faça-as grandes. — Orison Swett Marden",
+                    "Tudo o que a mente humana pode conceber e acreditar, ela pode conquistar. — Napoleon Hill",
+                    "A coragem não é ausência de medo, e sim o domínio sobre algo que não se evita. — Mark Twain",
+                    "Onde quer que você vá, vá com todo o seu coração. — Confúcio",
+                    "Se você quer algo que nunca teve, precisa fazer algo que nunca fez. — Thomas Jefferson",
+                    "O segredo da mudança é não focar toda a sua energia em lutar contra o velho, mas em construir o novo. — Sócrates",
+                    "A vida é 10% o que acontece com você e 90% como você reage a isso. — Charles R. Swindoll",
+                    "Sorte é o que acontece quando a preparação encontra a oportunidade. — Sêneca",
+                    "O insucesso é apenas uma oportunidade para recomeçar com mais inteligência. — Henry Ford"
+                ]
+            }
+        };
+
+        window.AudioSys = {
+            ctx: null,
+            init: () => { if(!window.AudioSys.ctx){ const AC=window.AudioContext||window.webkitAudioContext; window.AudioSys.ctx=new AC(); }},
+            playOsc: (f,t,d,v=0.1) => { if(!window.AudioSys.ctx)return; const o=window.AudioSys.ctx.createOscillator(), g=window.AudioSys.ctx.createGain(); o.type=t; o.frequency.setValueAtTime(f,window.AudioSys.ctx.currentTime); g.gain.setValueAtTime(v,window.AudioSys.ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.01,window.AudioSys.ctx.currentTime+d); o.connect(g); g.connect(window.AudioSys.ctx.destination); o.start(); o.stop(window.AudioSys.ctx.currentTime+d); },
+            click: () => { if(navigator.vibrate)navigator.vibrate(15); window.AudioSys.playOsc(600,'sine',0.1,0.05); window.AudioSys.playOsc(150,'triangle',0.1,0.05); },
+            heartbeat: () => { 
+                if(!window.AudioSys.ctx) return;
+                const playBeat = (time) => {
+                    const osc = window.AudioSys.ctx.createOscillator();
+                    const gain = window.AudioSys.ctx.createGain();
+                    osc.frequency.setValueAtTime(60, time);
+                    osc.frequency.exponentialRampToValueAtTime(30, time + 0.1);
+                    gain.gain.setValueAtTime(0.6, time);
+                    gain.gain.exponentialRampToValueAtTime(0.01, time + 0.15);
+                    osc.connect(gain);
+                    gain.connect(window.AudioSys.ctx.destination);
+                    osc.start(time);
+                    osc.stop(time + 0.2);
+                };
+                const now = window.AudioSys.ctx.currentTime;
+                playBeat(now);
+                setTimeout(() => playBeat(window.AudioSys.ctx.currentTime), 200);
+                setTimeout(() => playBeat(window.AudioSys.ctx.currentTime), 800);
+                setTimeout(() => playBeat(window.AudioSys.ctx.currentTime), 1000);
+            },
+            unlock: () => { [261,329,392,523].forEach((f,i)=>setTimeout(()=>window.AudioSys.playOsc(f,'sine',1.5,0.1),i*100)); }
+        };
+
+        window.AppState = { premium: false, data: null, credits: 0, cookieCount: 0 };
+        let searchTimeout = null;
+
+        window.Persistence = {
+            save: () => {
+                try {
+                    localStorage.setItem('LUCIA_26_DATA', JSON.stringify(window.AppState));
+                } catch(e) { console.error("Save failed", e); }
+            },
+            load: () => {
+                try {
+                    return JSON.parse(localStorage.getItem('LUCIA_26_DATA'));
+                } catch(e) { return null; }
+            },
+            clearCurrentData: () => {
+                window.AppState.data = null; 
+                window.AppState.cookieCount = 0; // Reset cookie logic
+                window.UI.navigateTo('screen-data'); // Volta para dados, não para a capa
+            }
+        };
+
+        window.UI = {
+            enterFromCover: () => {
+                window.AudioSys.init(); window.AudioSys.click();
+                if(navigator.vibrate) navigator.vibrate(30);
+                const cover = document.getElementById('screen-intro');
+                const app = document.getElementById('app-container');
+                
+                // Animação de saída
+                cover.classList.add('fade-out-screen');
+                
+                setTimeout(() => {
+                    cover.style.display = 'none';
+                    app.classList.remove('hidden');
+                    app.classList.add('animate-fade-in');
+                    window.UI.navigateTo('screen-data');
+                }, 700);
+            },
+            navigateTo: (tid) => { 
+                ['screen-data','screen-dash'].forEach(sid=>{ 
+                    const el=document.getElementById(sid); 
+                    if(el) {
+                        if(sid===tid){ 
+                            el.classList.remove('hidden'); 
+                            el.style.display='flex'; 
+                            el.classList.add('animate-fade-in'); 
+                        } else { 
+                            el.style.display='none'; 
+                            el.classList.add('hidden'); 
+                        } 
+                    }
+                }); 
+            },
+            
+            showToast: (msg) => {
+                const t = document.getElementById('toast-notification');
+                const c = t.querySelector('.toast-content');
+                c.textContent = msg;
+                t.classList.remove('hidden');
+                c.classList.remove('animate-toast-slide');
+                void c.offsetWidth; 
+                c.classList.add('animate-toast-slide');
+            },
+
+            triggerReveal: () => {
+                const btn = document.getElementById('btn-reveal-map');
+                const overlay = document.getElementById('map-content-overlay');
+                const loader = document.getElementById('theatrical-loader');
+                
+                btn.style.display = 'none';
+                loader.style.display = 'flex';
+                loader.classList.remove('hidden');
+
+                window.AudioSys.heartbeat(); 
+                
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                    loader.classList.add('hidden');
+                    
+                    overlay.classList.add('animate-fade-out');
+                    setTimeout(() => overlay.style.display = 'none', 500);
+                    
+                    document.getElementById('view-astral').classList.remove('hidden');
+                    document.getElementById('view-astral').classList.remove('opacity-0');
+                    document.getElementById('view-astral').classList.add('opacity-1');
+                }, 2000);
+            },
+            switchTab: (t) => {
+                window.AudioSys.click();
+                ['astral','chinese','numero', 'luck'].forEach(k => {
+                    const view = document.getElementById(`view-${k}`);
+                    if(view) {
+                        view.classList.add('hidden');
+                        view.classList.add('opacity-0');
+                    }
+                    const btn = document.getElementById(`tab-${k}`);
+                    if(btn) {
+                        btn.classList.remove('tab-active');
+                        btn.classList.add('tab-inactive');
+                    }
+                }); 
+                
+                const target = document.getElementById(`view-${t}`);
+                if(target) {
+                    target.classList.remove('hidden');
+                    setTimeout(() => {
+                        target.classList.remove('opacity-0');
+                        target.classList.add('opacity-1');
+                    }, 50);
+                }
+
+                const activeBtn = document.getElementById(`tab-${t}`);
+                if(activeBtn) {
+                    activeBtn.classList.remove('tab-inactive');
+                    activeBtn.classList.add('tab-active');
+                }
+            },
+            updateDots: (el) => {
+                const scrollLeft = el.scrollLeft;
+                const width = el.offsetWidth;
+                const index = Math.round(scrollLeft / width);
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((d, i) => {
+                    if(i === index) d.classList.add('active');
+                    else d.classList.remove('active');
+                });
+            },
+            showModal: (title, sub, text) => {
+                document.getElementById('modal-title').textContent = title;
+                document.getElementById('modal-subtitle').textContent = sub;
+                document.getElementById('modal-text').innerHTML = text; 
+                const m = document.getElementById('modal-house');
+                m.classList.remove('hidden'); m.style.display = 'flex';
+                const hint = document.getElementById('modal-premium-hint');
+                if(!window.AppState.premium) hint.classList.remove('hidden');
+                else hint.classList.add('hidden');
+                window.AudioSys.click();
+            },
+            closeModal: () => {
+                document.getElementById('modal-house').style.display = 'none';
+                window.AudioSys.click();
+            },
+            
+            unlockPremiumUI: () => {
+                document.getElementById('paywall-section').style.display = 'none';
+                
+                // Hide Masks
+                document.querySelectorAll('[id^="mask-"]').forEach(el => el.style.display = 'none');
+                
+                // Show Containers
+                document.querySelectorAll('[id^="container-"]').forEach(el => el.classList.remove('hidden'));
+                
+                // INJECT TEXTS
+                if(document.getElementById('text-sun-premium')) document.getElementById('text-sun-premium').textContent = DB.premiumContent.sun;
+                if(document.getElementById('text-moon-premium')) document.getElementById('text-moon-premium').textContent = DB.premiumContent.moon;
+                if(document.getElementById('text-asc-premium')) document.getElementById('text-asc-premium').textContent = DB.premiumContent.asc;
+                if(document.getElementById('text-chi-premium')) document.getElementById('text-chi-premium').textContent = DB.premiumContent.chinese;
+                if(document.getElementById('text-num-premium')) document.getElementById('text-num-premium').textContent = DB.premiumContent.numerology;
+                
+                document.getElementById('unlocked-content').classList.remove('hidden');
+                document.getElementById('container-num-extra-premium').classList.remove('hidden');
+                
+                window.AudioSys.unlock();
+            },
+            
+            renderDashboard: (data) => {
+                if(!data) return;
+                
+                // Header
+                document.getElementById('dash-user').textContent = data.name;
+                
+                // Sun
+                document.getElementById('val-sun').textContent = data.sun.pt;
+                document.getElementById('desc-sun').textContent = DB.interpretacoes[data.sun.key].sol;
+                
+                // Moon
+                document.getElementById('val-moon').textContent = data.moon.pt;
+                document.getElementById('val-moon-phase').textContent = `Fase ${data.moonPhase}`;
+                document.getElementById('val-moon-desc').textContent = DB.interpretacoes[data.moon.key].lua;
+                
+                // Ascendant
+                document.getElementById('val-asc').textContent = data.asc.pt;
+                const ascDesc = document.getElementById('desc-asc');
+                if(ascDesc && DB.interpretacoes[data.asc.key]) {
+                    ascDesc.textContent = DB.interpretacoes[data.asc.key].asc;
+                }
+                
+                // Chinese
+                document.getElementById('val-chi-sign').textContent = data.chinese.animal;
+                document.getElementById('val-chi-element').textContent = `Elemento: ${data.chinese.element}`;
+                document.getElementById('chi-allies').textContent = data.chinese.allies;
+                document.getElementById('chi-enemy').textContent = data.chinese.enemy;
+                document.getElementById('desc-chi').textContent = data.chinese.desc;
+                
+                // Numerology
+                document.getElementById('val-num-path').textContent = data.numerology.path;
+                document.getElementById('num-match').textContent = data.numerology.year; 
+                document.getElementById('desc-num').textContent = data.numerology.desc;
+                
+                // Synastry
+                document.getElementById('val-opposite').textContent = data.sun.opposite;
+                document.getElementById('val-complement').textContent = data.sun.complement;
+
+                // Premium Extras
+                document.getElementById('val-num-soul').textContent = data.numerology.soul;
+                document.getElementById('val-num-year').textContent = data.numerology.year;
+                
+                // LUCK TAB
+                if(data.luck) {
+                    const quoteEl = document.getElementById('luck-quote');
+                    if (window.AppState.cookieCount === 0) {
+                        quoteEl.textContent = DB.luck.quotes[0];
+                    } else {
+                        quoteEl.textContent = DB.luck.quotes[data.luck.quoteIndex];
+                    }
+
+                    const colorDot = document.getElementById('luck-color-dot');
+                    const colorMap = {
+                        "Azul Safira": "#1e3a8a", "Verde Esmeralda": "#10b981", "Dourado Solar": "#facc15",
+                        "Violeta Místico": "#8b5cf6", "Vermelho Rubi": "#dc2626", "Prata Lunar": "#94a3b8",
+                        "Índigo Profundo": "#312e81", "Turquesa": "#2dd4bf"
+                    };
+                    colorDot.style.backgroundColor = colorMap[data.luck.color] || "#ffffff";
+                    document.getElementById('luck-color-name').textContent = data.luck.color;
+                    document.getElementById('luck-stone').textContent = data.luck.stone;
+                }
+
+                // Houses Generation
+                const freeContainer = document.getElementById('free-houses-list');
+                const fullContainer = document.getElementById('full-houses-list');
+                freeContainer.innerHTML = '';
+                fullContainer.innerHTML = '';
+
+                data.houses.forEach((h, i) => {
+                    const isAngular = [1, 4, 7, 10].includes(h.number);
+                    const html = `
+                        <div class="p-3 rounded-lg bg-slate-900/50 border border-white/5 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-gold-500 font-bold uppercase tracking-wider">${DB.houses[i]}</span>
+                                <p class="text-sm text-white font-mystic">${h.sign}</p>
+                            </div>
+                            <div class="text-[9px] text-slate-500 font-mono">Grau ${Math.floor(Math.random()*29)}°</div>
+                        </div>
+                    `;
+                    if(isAngular) freeContainer.innerHTML += html;
+                    fullContainer.innerHTML += html;
+                });
+            },
+
+            openLegal: (type) => {
+                const title = document.getElementById('legal-title');
+                const content = document.getElementById('legal-content');
+                
+                if(type === 'privacy') {
+                    title.textContent = "Protocolo de Privacidade";
+                    content.innerHTML = "<p><strong>1. Arquitetura Híbrida Segura</strong><br>O Sistema LUCIA.26 prioriza o processamento local. Todos os cálculos matemáticos (mapa astral e numerologia) são executados no seu dispositivo.<br><br><strong>2. Coleta Mínima</strong><br>Dados pessoais como e-mail e telefone são processados em ambiente seguro criptografado apenas caso o usuário opte pelo desbloqueio Premium, para fins de cadastro e liberação de acesso.<br><br><strong>3. Volatilidade</strong><br>Ao fechar esta interface sem realizar cadastro, a sessão é encerrada e nenhum dado é mantido.</p>";
+                } else if(type === 'terms') {
+                    title.textContent = "Diretrizes Operacionais";
+                    content.innerHTML = "<p><strong>1. Natureza do Instrumento</strong><br>Este software é uma ferramenta de autoconhecimento baseada em arquétipos milenares. Não substitui orientações profissionais nas esferas médica, jurídica ou financeira.<br><br><strong>2. Uso Consciente</strong><br>As interpretações são simbólicas.<br><br><strong>3. Propriedade Intelectual</strong><br>Engenharia reversa proibida.</p>";
+                }
+                
+                const m = document.getElementById('modal-legal');
+                if(m) {
+                    m.classList.remove('hidden'); 
+                    m.style.display = 'flex';
+                    window.AudioSys.click();
+                }
+            },
+
+            closeLegal: () => {
+                const m = document.getElementById('modal-legal');
+                if(m) m.style.display = 'none';
+                window.AudioSys.click();
+            },
+
+            initSuggestions: () => {
+                document.querySelectorAll('select').forEach(i => i.addEventListener('focus', () => window.AudioSys.playOsc(300, 'sine', 0.1, 0.02)));
+                
+                const inpName = document.getElementById('inp-name');
+                if (inpName) {
+                    inpName.addEventListener('input', function() {
+                        const words = this.value.toLowerCase().split(' ');
+                        for (let i = 0; i < words.length; i++) {
+                            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                        }
+                        this.value = words.join(' ');
+                    });
+                }
+
+                // Phone Mask
+                const phoneInput = document.getElementById('inp-lead-phone');
+                if (phoneInput) {
+                    phoneInput.addEventListener('input', function (e) {
+                        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+                        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+                    });
+                }
+
+                const validateDate = (el, max) => {
+                    if(parseInt(el.value) > max) el.value = max;
+                    if(el.value.length > 2 && max < 100) el.value = el.value.slice(0, 2);
+                    if(max > 100 && el.value.length > 4) el.value = el.value.slice(0, 4);
+                };
+
+                const inpDay = document.getElementById('inp-day');
+                const inpMonth = document.getElementById('inp-month');
+                const inpYear = document.getElementById('inp-year');
+
+                const autoTab = (curr, nextId) => {
+                    if (curr.value.length >= curr.maxLength) {
+                        if (nextId) document.getElementById(nextId).focus();
+                    }
+                };
+                
+                const updateTZ = () => {
+                    const lat = document.getElementById('hidden-lat').value;
+                    const d = document.getElementById('inp-day').value;
+                    const m = document.getElementById('inp-month').value;
+                    const y = document.getElementById('inp-year').value;
+                    if(lat && d.length===2 && m.length===2 && y.length===4) {
+                            const dateStr = `${y}-${m}-${d}`;
+                            if (typeof window.TimeEngine !== 'undefined') {
+                                const info = window.TimeEngine.getOffset(dateStr, parseFloat(lat));
+                                document.getElementById('hidden-offset').value = info.val;
+                                document.getElementById('tz-msg').textContent = info.label;
+                                document.getElementById('timezone-display').style.display = 'flex';
+                                document.getElementById('timezone-display').classList.remove('hidden');
+                            }
+                    }
+                };
+
+                if(inpDay) inpDay.addEventListener('input', function() { validateDate(this, 31); autoTab(this, 'inp-month'); updateTZ(); });
+                if(inpMonth) inpMonth.addEventListener('input', function() { validateDate(this, 12); autoTab(this, 'inp-year'); updateTZ(); });
+                if(inpYear) inpYear.addEventListener('input', function() { validateDate(this, 9999); updateTZ(); });
+
+                const selState = document.getElementById('sel-state');
+                const selCity = document.getElementById('sel-city');
+                const inpLocal = document.getElementById('inp-local'); 
+                const loadIcon = document.getElementById('city-loading');
+
+                if(selState) {
+                    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados?orderBy=nome')
+                        .then(res => res.json())
+                        .then(states => {
+                            states.forEach(uf => {
+                                const opt = document.createElement('option');
+                                opt.value = uf.sigla;
+                                opt.textContent = uf.sigla;
+                                selState.appendChild(opt);
+                            });
+                        });
+
+                    selState.addEventListener('change', async function() {
+                        selCity.innerHTML = '<option value="">Carregando...</option>';
+                        selCity.disabled = true;
+                        selCity.classList.replace('cursor-pointer', 'cursor-not-allowed');
+                        selCity.classList.replace('text-white', 'text-slate-400');
+                        loadIcon.classList.remove('hidden');
+
+                        try {
+                            const res = await fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${this.value}/municipios?orderBy=nome`);
+                            const cities = await res.json();
+                            selCity.innerHTML = '<option value="" disabled selected>Selecione a cidade...</option>';
+                            cities.forEach(city => {
+                                const opt = document.createElement('option');
+                                opt.value = city.nome;
+                                opt.textContent = city.nome;
+                                selCity.appendChild(opt);
+                            });
+                            selCity.disabled = false;
+                            selCity.classList.replace('cursor-not-allowed', 'cursor-pointer');
+                            selCity.classList.replace('text-slate-400', 'text-white');
+                        } catch (e) { console.error(e); } finally { loadIcon.classList.add('hidden'); }
+                    });
+
+                    selCity.addEventListener('change', async function() {
+                        const city = this.value;
+                        const state = selState.value;
+                        const fullName = `${city} - ${state}`;
+                        const queryName = `${city}, ${state}, Brazil`;
+                        inpLocal.value = fullName;
+                        try {
+                            loadIcon.classList.remove('hidden');
+                            const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(queryName)}&format=json&limit=1`);
+                            const data = await res.json();
+                            if (data && data.length > 0) {
+                                document.getElementById('hidden-lat').value = data[0].lat;
+                                document.getElementById('hidden-lon').value = data[0].lon;
+                                updateTZ(); 
+                            }
+                        } catch(e) { console.error(e); } finally { loadIcon.classList.add('hidden'); }
+                    });
+                }
+            }
+        };
+
+        window.TimeEngine = {
+            isDST: (d, l) => {
+                const y = new Date(d).getFullYear();
+                if (y < 1985 || y > 2018) return false;
+                if (l > -14) return false;
+                const dt = new Date(d);
+                const m = dt.getMonth() + 1;
+                return (m > 10 || m < 2 || (m === 10 && dt.getDate() > 20) || (m === 2 && dt.getDate() < 15));
+            },
+            getOffset: (d, l) => {
+                return { val: window.TimeEngine.isDST(d, l) ? -2 : -3, label: window.TimeEngine.isDST(d, l) ? "GMT-2 (Hor. Verão)" : "GMT-3 (Padrão)" };
+            }
+        };
+
+        window.AstroEngine = {
+            getSign: (lon) => {
+                const index = Math.floor(((lon%360+360)%360)/30);
+                return { ...DB.signs[index], raw_lon: lon }; 
+            },
+            getObliquity: (t) => 23.43929111 - (46.8150/3600)*(t.ut/36525.0),
+            getChinese: (year, month, day) => {
+                let y = parseInt(year);
+                if (month < 2 || (month === 2 && day < 4)) y -= 1;
+                const idx = (y - 4) % 12;
+                const animal = DB.chinese.animals[idx];
+                const elem = DB.chinese.elements[Math.floor((y % 10) / 2)];
+                const desc = DB.chinese.desc[idx];
+                const allies = DB.chinese.allies[idx];
+                const enemy = DB.chinese.enemies[idx];
+                return { animal, element: elem, desc, allies, enemy };
+            },
+            getNumerology: (dateStr, name) => {
+                const cleanDate = dateStr.replace(/\D/g, '');
+                let sum = 0;
+                for(let c of cleanDate) sum += parseInt(c);
+                
+                if (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
+                    sum = sum.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b),0);
+                }
+                if (sum > 9 && sum !== 11 && sum !== 22 && sum !== 33) {
+                    sum = sum.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b),0);
+                }
+                
+                const vowels = {a:1, e:5, i:9, o:6, u:3, y:7};
+                let soulSum = 0;
+                const normalizedName = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                for(let char of normalizedName) { if(vowels[char]) soulSum += vowels[char]; }
+                
+                if (soulSum > 9 && soulSum !== 11 && soulSum !== 22) {
+                    soulSum = soulSum.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b),0);
+                }
+                if (soulSum > 9 && soulSum !== 11 && soulSum !== 22) {
+                    soulSum = soulSum.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b),0);
+                }
+                
+                const [d, m, y] = dateStr.split('/').map(Number);
+                let yearSum = d + m + 2026;
+                if (yearSum > 9) yearSum = yearSum.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b),0);
+                if (yearSum > 9) yearSum = yearSum.toString().split('').reduce((a,b)=>parseInt(a)+parseInt(b),0);
+
+                const match = DB.numerology.matches[sum] || "...";
+
+                return { path: sum, desc: DB.numerology.desc[sum], soul: soulSum, year: yearSum, match };
+            },
+            calculateHouses: (asc, mc) => {
+                let a=(asc+360)%360, m=(mc+360)%360;
+                let c1=a, c10=m, c4=(m+180)%360, c7=(a+180)%360;
+                let q1=((c4-c1+360)%360)/3, q2=((c7-c4+360)%360)/3, q3=((c10-c7+360)%360)/3, q4=((c1-c10+360)%360)/3;
+                let h=[c1,(c1+q1)%360,(c1+2*q1)%360,c4,(c4+q2)%360,(c4+2*q2)%360,c7,(c7+q3)%360,(c7+2*q3)%360,c10,(c10+q4)%360,(c10+2*q4)%360];
+                return h.map((d,i)=>{
+                    const s=window.AstroEngine.getSign(d);
+                    const decan = Math.floor((d % 30) / 10) + 1;
+                    return{number:i+1,sign:s.pt,desc_sign:s.desc,desc_sign_context:`Na área de ${DB.houses[i]}, a energia de ${s.pt} traz: ${s.desc}<br><br><strong>Decanato ${decan}:</strong> Revelação profunda disponível no plano Premium.`};
+                });
+            },
+            getLuckData: (nameStr) => {
+                 let hash = 0;
+                 for (let i = 0; i < nameStr.length; i++) {
+                    const char = nameStr.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                 }
+                 const colorIdx = Math.abs(hash % DB.luck.colors.length);
+                 const stoneIdx = Math.abs((hash >> 3) % DB.luck.stones.length);
+                 
+                 const today = new Date();
+                 const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
+                 const dailyHash = hash + dayOfYear;
+                 
+                 const quoteIdx = (Math.abs(dailyHash % (DB.luck.quotes.length - 1))) + 1; 
+
+                 return {
+                     quoteIndex: quoteIdx,
+                     color: DB.luck.colors[colorIdx],
+                     stone: DB.luck.stones[stoneIdx]
+                 };
+            },
+            process: (data) => {
+                const d = parseInt(document.getElementById('inp-day').value);
+                const m = parseInt(document.getElementById('inp-month').value);
+                const y = parseInt(document.getElementById('inp-year').value);
+                
+                const [hr,mn] = data.time.split(':').map(Number);
+                const offsetData = window.TimeEngine.getOffset(`${y}-${m}-${d}`, parseFloat(data.lat));
+                const dateObj = new Date(Date.UTC(y, m-1, d, hr - offsetData.val, mn));
+                
+                try {
+                    const astroTime = Astronomy.MakeTime(dateObj);
+                    const sunLon = Astronomy.Ecliptic(Astronomy.GeoVector(Astronomy.Body.Sun, astroTime, false)).elon;
+                    const moonLon = Astronomy.Ecliptic(Astronomy.GeoVector(Astronomy.Body.Moon, astroTime, false)).elon;
+                    
+                    const lst = Astronomy.SiderealTime(astroTime) + (parseFloat(data.lon)/15.0);
+                    const ramcRad = (lst*15.0)*(Math.PI/180);
+                    const epsRad = window.AstroEngine.getObliquity(astroTime)*(Math.PI/180);
+                    const latRad = parseFloat(data.lat)*(Math.PI/180);
+                    
+                    let ascDeg = (Math.atan2(Math.cos(ramcRad), -(Math.sin(ramcRad)*Math.cos(epsRad)+Math.tan(latRad)*Math.sin(epsRad)))*180/Math.PI+360)%360;
+                    let mcDeg = (Math.atan2(Math.sin(ramcRad), Math.cos(ramcRad)*Math.cos(epsRad))*180/Math.PI+360)%360;
+                    
+                    if (mcDeg > 180 && lst * 15 < 180) mcDeg -= 180; 
+                    else if (mcDeg < 180 && lst * 15 > 180) mcDeg += 180;
+                    if(mcDeg < 0) mcDeg += 360;
+
+                    const chin = window.AstroEngine.getChinese(y, m, d);
+                    const num = window.AstroEngine.getNumerology(`${d}/${m}/${y}`, data.name);
+                    const houses = window.AstroEngine.calculateHouses(ascDeg, mcDeg);
+                    const luckData = window.AstroEngine.getLuckData(data.name + d + m + y);
+
+                    let moonPhase = ((moonLon-sunLon+360)%360 < 45 || (moonLon-sunLon+360)%360 > 315)?"Nova":((moonLon-sunLon+360)%360 < 135)?"Crescente":((moonLon-sunLon+360)%360 < 225)?"Cheia":"Minguante";
+
+                    return {
+                        name: data.name, dateFormatted: `${d}/${m}/${y}`, city: data.city,
+                        sun: window.AstroEngine.getSign(sunLon), moon: window.AstroEngine.getSign(moonLon), asc: window.AstroEngine.getSign(ascDeg),
+                        chinese: chin, numerology: num, houses: houses, moonPhase, luck: luckData
+                    };
+                } catch(e) {
+                    console.error("Astro Calculation Error:", e);
+                    alert("Erro ao calcular o mapa. Verifique os dados.");
+                    return null;
+                }
+            }
+        };
+
+        window.Engine = {
+            processData: () => {
+                window.AudioSys.click();
+                const name = document.getElementById('inp-name').value;
+                const d = document.getElementById('inp-day').value;
+                const m = document.getElementById('inp-month').value;
+                const y = document.getElementById('inp-year').value;
+                const time = document.getElementById('inp-time').value;
+                const lat = document.getElementById('hidden-lat').value;
+                const lon = document.getElementById('hidden-lon').value;
+                const city = document.getElementById('inp-local').value;
+                
+                if(!name || !d || !m || !y || !time || !lat) { 
+                    if(city && !lat) {
+                        alert("Por favor, selecione a cidade da lista que aparece ao digitar.");
+                    } else {
+                        alert("Preencha todos os dados corretamente."); 
+                    }
+                    return; 
+                }
+                const dateStr = `${d}/${m}/${y}`;
+                
+                const result = window.AstroEngine.process({ name, date: dateStr, time, lat, lon, city });
+                if (result) {
+                    window.AppState.data = result;
+                    
+                    if (window.AppState.premium) {
+                        if (window.AppState.credits > 0) {
+                            window.AppState.credits--;
+                            window.UI.showToast(`Mapa Gerado! Restam ${window.AppState.credits} consultas.`);
+                            if(window.AppState.credits === 0) window.AppState.premium = false; 
+                        } else {
+                            window.AppState.premium = false; 
+                        }
+                    }
+
+                    window.AppState.cookieCount = 0;
+
+                    window.Persistence.save();
+                    window.UI.renderDashboard(result);
+                    window.UI.navigateTo('screen-dash');
+                }
+            },
+            newCookie: () => {
+                if(!window.AppState.data || !window.AppState.data.luck) return;
+                window.AudioSys.click();
+                
+                window.AppState.cookieCount++;
+                window.Persistence.save();
+
+                const quotes = DB.luck.quotes;
+                const el = document.getElementById('luck-quote');
+                
+                el.style.opacity = '0';
+                setTimeout(() => {
+                    const randIdx = Math.floor(Math.random() * (quotes.length - 1)) + 1;
+                    el.textContent = quotes[randIdx];
+                    el.style.opacity = '1';
+                }, 200);
+            }
+        };
+
+        window.Payment = {
+            checkCoupon: async () => {
+                const codeInput = document.getElementById('inp-coupon');
+                const btn = document.querySelector('#coupon-input-group button');
+                const code = codeInput.value.trim().toUpperCase();
+                
+                if(!code) return;
+
+                const originalBtnText = btn.textContent;
+                btn.disabled = true;
+                btn.textContent = "...";
+
+                try {
+                    const { data, error } = await supabaseClient
+                        .from('coupons')
+                        .select('*')
+                        .eq('code', code)
+                        .single();
+                    
+                    if (error || !data) {
+                        alert("Cupom inválido ou não encontrado.");
+                        btn.disabled = false;
+                        btn.textContent = originalBtnText;
+                        return;
+                    }
+                    
+                    if (!data.active) {
+                        alert("Este cupom foi desativado.");
+                        btn.disabled = false;
+                        btn.textContent = originalBtnText;
+                        return;
+                    }
+
+                    if (data.valid_until && new Date() > new Date(data.valid_until)) {
+                        alert("Este cupom expirou.");
+                        btn.disabled = false;
+                        btn.textContent = originalBtnText;
+                        return;
+                    }
+
+                    if (data.current_uses >= data.max_uses) {
+                        alert("Este cupom atingiu o limite de usos.");
+                        btn.disabled = false;
+                        btn.textContent = originalBtnText;
+                        return;
+                    }
+
+                    await supabaseClient
+                        .from('coupons')
+                        .update({ current_uses: data.current_uses + 1 })
+                        .eq('id', data.id);
+
+                    const emailInput = document.getElementById('inp-lead-email');
+                    if(emailInput && emailInput.value) {
+                         await supabaseClient.from('leads').insert([{
+                            email: emailInput.value,
+                            nome: 'Voucher User',
+                            status: 'voucher_redeemed',
+                            signo_solar: code
+                         }]);
+                    }
+
+                    alert(`Cupom ${code} aplicado com sucesso!`);
+                    
+                    const payBtn = document.getElementById('btn-pay');
+                    window.Payment.simulate(payBtn);
+
+                } catch(e) {
+                    console.error(e);
+                    alert("Erro ao validar cupom.");
+                    btn.disabled = false;
+                    btn.textContent = originalBtnText;
+                }
+            },
+
+            processLeadAndPay: async () => {
+                const emailInput = document.getElementById('inp-lead-email');
+                const phoneInput = document.getElementById('inp-lead-phone');
+                const nameInput = document.getElementById('inp-name');
+                
+                const email = emailInput ? emailInput.value.trim() : "";
+                const phone = phoneInput ? phoneInput.value.trim() : "";
+                const name = nameInput ? nameInput.value.trim() : "";
+                
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if(!emailRegex.test(email)) { alert("Por favor, insira um e-mail válido."); return; }
+                if(!phone || phone.length < 10) { alert("Por favor, insira um telefone válido com DDD."); return; }
+
+                const btn = document.querySelector('#btn-pay');
+                const originalText = btn.innerHTML;
+                
+                btn.disabled = true;
+                btn.style.opacity = "0.7";
+                btn.style.cursor = "not-allowed";
+                btn.innerHTML = `<span class="animate-spin">↻</span> A guardar...`;
+
+                try {
+                    const leadPayload = { 
+                        email: email, 
+                        whatsapp: phone, 
+                        nome: name,
+                        signo_solar: window.AppState.data ? window.AppState.data.sun.pt : 'N/A',
+                        status: 'aguardando_pagamento'
+                    };
+
+                    const { error } = await supabaseClient
+                        .from('leads')
+                        .insert([ leadPayload ]);
+
+                    if (error) throw error;
+                    
+                    if (CHECKOUT_URL && CHECKOUT_URL !== "") {
+                        btn.innerHTML = "A redirecionar...";
+                        setTimeout(() => {
+                            window.location.href = CHECKOUT_URL;
+                        }, 1000);
+                    } else {
+                        window.Payment.simulate(btn);
+                    }
+
+                } catch (err) {
+                    console.error("Erro:", err);
+                    if (CHECKOUT_URL) {
+                        window.location.href = CHECKOUT_URL;
+                    } else {
+                        alert("Erro de conexão. Tente novamente.");
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                        btn.style.opacity = "1";
+                        btn.style.cursor = "pointer";
+                    }
+                }
+            },
+            
+            simulate: (btn) => {
+                window.AudioSys.click();
+                btn.innerHTML = `<span class="animate-spin">↻</span> Processando...`;
+                setTimeout(() => {
+                    window.AudioSys.unlock();
+                    if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
+                    
+                    window.AppState.premium = true;
+                    window.AppState.credits = 5; 
+                    
+                    window.Persistence.save(); 
+                    window.UI.unlockPremiumUI();
+                    btn.innerHTML = "Desbloqueado!";
+                }, 2000);
+            }
+        };
+        
+        window.onload = () => {
+            if (typeof window.UI !== 'undefined' && window.UI.initSuggestions) {
+                window.UI.initSuggestions();
+            }
+
+            const saved = window.Persistence.load();
+            if(saved) {
+                window.AppState = saved;
+                if(saved.credits === undefined) window.AppState.credits = 0; 
+                if(saved.cookieCount === undefined) window.AppState.cookieCount = 0;
+
+                if(saved.data) {
+                    // Se já tiver dados, preenche, mas mantém a Intro visível até clicar
+                    window.UI.renderDashboard(saved.data);
+                    if(window.AppState.premium) {
+                        if(window.AppState.credits > 0) window.UI.unlockPremiumUI();
+                        else window.AppState.premium = false; 
+                    }
+                }
+            }
+        };
+    </script>
+</body>
+</html>
