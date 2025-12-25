@@ -1344,7 +1344,7 @@
 
                 const codeInput = document.getElementById('inp-coupon');
                 const btn = document.querySelector('#coupon-input-group button');
-                const code = codeInput.value.trim().toUpperCase();
+                const code = codeInput.value.simtrim().toUpperCase();
                 
                 if(!code) {
                     window.Payment.isProcessing = false;
@@ -1503,7 +1503,7 @@
                     if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
                     
                     window.AppState.premium = true;
-                    window.AppState.credits = 999; // AUMENTADO PARA 999 PARA EVITAR BLOQUEIO EM TESTES
+                    window.AppState.credits = 3; // AUMENTADO PARA 999 PARA EVITAR BLOQUEIO EM TESTES
                     
                     window.Persistence.save(); 
                     window.UI.unlockPremiumUI();
