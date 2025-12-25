@@ -455,8 +455,8 @@
                 </div>
 
                 <!-- PAYWALL SECTION + VOUCHER -->
-                <!-- ADICIONADO Z-INDEX 20 E MARGIN-TOP MAIOR PARA EVITAR SOBREPOSIÇÃO -->
-                <div id="paywall-section" class="relative mt-12 z-20 pb-10">
+                <!-- Z-INDEX 50 E BACKGROUND ESCURO PARA EVITAR SOBREPOSIÇÃO -->
+                <div id="paywall-section" class="relative mt-16 z-50 pb-10 bg-slate-950/80 rounded-t-3xl border-t border-white/10 backdrop-blur-md">
                     <div id="paywall-overlay" class="flex flex-col items-center justify-start pt-6 px-8 text-center pb-20">
                         <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-slate-950 flex items-center justify-center text-2xl mb-5 shadow-[0_0_40px_rgba(251,191,36,0.3)] animate-lock-pulse">🔒</div>
                         <h3 class="text-xl font-mystic text-white mb-2">Desbloqueie o Grimório</h3>
@@ -1326,8 +1326,7 @@
                 const emailInput = document.getElementById('inp-lead-email');
                 const phoneInput = document.getElementById('inp-lead-phone');
                 const email = emailInput ? emailInput.value.trim() : "";
-                const phone = phoneInput ? phoneInput.value.trim() : "";
-
+                
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                 
                 if(!emailRegex.test(email)) { 
@@ -1335,16 +1334,12 @@
                     window.Payment.isProcessing = false;
                     return; 
                 }
-                if(!phone || phone.length < 10) { 
-                    alert("Por favor, insira um WhatsApp válido para ativar o voucher."); 
-                    window.Payment.isProcessing = false;
-                    return; 
-                }
+                // REMOVIDA OBRIGATORIEDADE DE TELEFONE PARA VOUCHER
                 // --------------------------------
 
                 const codeInput = document.getElementById('inp-coupon');
                 const btn = document.querySelector('#coupon-input-group button');
-                const code = codeInput.value.simtrim().toUpperCase();
+                const code = codeInput.value.trim().toUpperCase();
                 
                 if(!code) {
                     window.Payment.isProcessing = false;
@@ -1399,10 +1394,10 @@
                         .update({ current_uses: data.current_uses + 1 })
                         .eq('id', data.id);
 
-                    // SALVAR LEAD OBRIGATÓRIO
+                    // SALVAR LEAD OBRIGATÓRIO (Telefone opcional aqui)
                     await supabaseClient.from('leads').insert([{
                         email: email,
-                        whatsapp: phone,
+                        whatsapp: document.getElementById('inp-lead-phone')?.value || '',
                         nome: document.getElementById('inp-name')?.value || 'Voucher User',
                         status: 'voucher_redeemed',
                         signo_solar: code
@@ -1503,7 +1498,7 @@
                     if(navigator.vibrate) navigator.vibrate([50, 50, 50]);
                     
                     window.AppState.premium = true;
-                    window.AppState.credits = 3; // AUMENTADO PARA 999 PARA EVITAR BLOQUEIO EM TESTES
+                    window.AppState.credits = 3; // CORRIGIDO PARA 3 (Produção)
                     
                     window.Persistence.save(); 
                     window.UI.unlockPremiumUI();
